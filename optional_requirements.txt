@@ -1,0 +1,7 @@
+# build and development time dependencies
+pytest
+pytest-cov
+mpremote
+mpy-cross
+sphinx
+sphinx_rtd_theme
