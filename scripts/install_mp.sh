@@ -1,7 +1,9 @@
 #!/bin/bash
 #
 # compile JLed to binary .mpy format and copy lib and example
-# to micropython device using mpremote
+# to micropython device using mpremote. Depends on:
+# - mpy-cross (https://pypi.org/project/mpy-cross)
+# - mpremote (https://pypi.org/project/mpremote/
 #
 set -eouT pipefail
 
