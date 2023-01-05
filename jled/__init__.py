@@ -11,10 +11,11 @@ __all__ = ["JLed", "JLedSequence", "play"]
 try:
     # running on CircuitPython?
     from .hal_pwm_circuitpython import CircuitPythonPWMHAL as _PWMHAL
+
     try:
         from .hal_time_circuitpython import CircuitPythonTimeHAL as _TimeHAL
     except ImportError:
-        # when running circuit python on raspi with adafruit blinka, the 
+        # when running circuit python on raspi with adafruit blinka, the
         # supervisor module is not available
         from .python_time_hal import PythonTimeHAL as _TimeHAL
 
@@ -26,7 +27,7 @@ except ImportError:
         from .hal_time_micropython import MicroPython_TimeHAL as _TimeHAL
 
     except ImportError:
-        from .python_pwm_hal  import PythonPWMHAL as _PWMHAL
+        from .python_pwm_hal import PythonPWMHAL as _PWMHAL
         from .python_time_hal import PythonTimeHAL as _TimeHAL
 
 JLed._DEFAULT_PWM_HAL = _PWMHAL  # pylint: disable=protected-access

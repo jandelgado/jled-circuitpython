@@ -34,4 +34,3 @@ class PythonTimeHAL:
     @staticmethod
     def ticks_less(ticks1, ticks2):
         return PythonTimeHAL.ticks_diff(ticks1, ticks2) < 0
-
