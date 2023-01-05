@@ -38,7 +38,7 @@ from jled.hal_pwm_circuitpython import CircuitPythonPWMHAL
 
 def test_circuitpython_hal_initializes_pwmout_corretly():
     hal = CircuitPythonPWMHAL(123, frequency=500)
-    assert 500 == hal._leds[123]._freq
+    assert 500 == hal._led._freq
     assert 123 == hal._pin
 
 
@@ -46,17 +46,17 @@ def test_circuitpython_hal_reuses_pwmout_on_same_pin():
     hal1 = CircuitPythonPWMHAL(123, frequency=500)
     hal2 = CircuitPythonPWMHAL(123, frequency=500)
 
-    assert id(hal1._leds[123]) == id(hal2._leds[123])
+    assert id(hal1._led) == id(hal2._led)
 
 
 def test_circuitpython_hal_writes_scaled_value():
     hal = CircuitPythonPWMHAL(123)
 
     hal.analog_write(0)
-    assert 0 == hal._leds[123]._val
+    assert 0 == hal._led._val
 
     hal.analog_write(255)
-    assert 0xFFFF == hal._leds[123]._val
+    assert 0xFFFF == hal._led._val
 
 
 def test_circuitpython_hal_deinit_deinitialzes_underlying_hal():
@@ -64,9 +64,9 @@ def test_circuitpython_hal_deinit_deinitialzes_underlying_hal():
     hal = CircuitPythonPWMHAL(123)
 
     # when
-    savedled = hal._leds[123]
+    savedled = hal._leds[str(123)]
     hal.deinit()
 
     # then deinit() was called and _
     assert savedled._deinit
-    assert 123 not in hal._leds
+    assert str(123) not in hal._leds

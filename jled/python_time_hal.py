@@ -15,15 +15,8 @@ A pure python port of https://github.com/jandelgado/jled
 import time
 
 
-class PythonHAL:
-    """a JLed PWM and Time HAL for CPyhton for debugging and testing"""
-
-    def __init__(self, pin):
-        self._pin = pin
-
-    def analog_write(self, duty):
-        """the debug HAL prints the duty that would be written to stdout"""
-        print("led on", self._pin, " => ", duty)
+class PythonTimeHAL:
+    """a JLed Time HAL for Pyhton"""
 
     @staticmethod
     def millis():
@@ -40,7 +33,5 @@ class PythonHAL:
 
     @staticmethod
     def ticks_less(ticks1, ticks2):
-        return PythonHAL.ticks_diff(ticks1, ticks2) < 0
+        return PythonTimeHAL.ticks_diff(ticks1, ticks2) < 0
 
-    def deinit(self):
-        pass
