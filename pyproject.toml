@@ -16,7 +16,7 @@ description = "Non-blocking LED controlling library"
 version = "0.0.0+auto.0"
 readme = "README.rst"
 authors = [
-    {name = "Adafruit Industries", email = "circuitpython@adafruit.com"}
+    {name = "Jan Delgado", email = "jdelgado@gmx.net"}
 ]
 urls = {Homepage = "https://github.com/jandelgado/jled-circuitpython"}
 keywords = [
