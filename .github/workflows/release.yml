@@ -38,7 +38,7 @@ jobs:
     - name: Checkout tools repo
       uses: actions/checkout@v3
       with:
-        repository: adafruit/actions-ci-circuitpython-libs@af180c15598232e064788e291b6c21de0d9e403f
+        repository: adafruit/actions-ci-circuitpython-libs
         path: actions-ci
     - name: Install deps
       run: |
@@ -48,11 +48,11 @@ jobs:
     - name: Build documentation
       run: |
         cd docs
-        sphinx-build -E -W   -b html . ../docs
+        sphinx-build -E -W   -b html . _build/html
     - name: Upload Documentation Assets
       uses: csexton/release-asset-action@f68e958070de0b5eaeec26ea045fa25db6d5abcd
       with:
-        pattern: "docs/*"
+        pattern: "docs/_build/_html/*"
         github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload Release Assets
       # the 'official' actions version does not yet support dynamically
@@ -68,12 +68,12 @@ jobs:
 
   upload-docs:
     runs-on: ubuntu-latest
-	  steps:
-		- name: Upload documentation
-			uses: peaceiris/actions-gh-pages@v3
-			with:
-				github_token: ${{ secrets.GITHUB_TOKEN }}
-				publish_dir: ./docs
+    steps:
+    - name: Upload documentation
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
 
   upload-pypi:
     runs-on: ubuntu-latest
