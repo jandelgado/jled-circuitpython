@@ -45,6 +45,15 @@ jobs:
         source actions-ci/install.sh
     - name: Build assets
       run: circuitpython-build-bundles --filename_prefix ${{ steps.repo-name.outputs.repo-name }} --package_folder_prefix "" --library_location .
+    - name: Build documentation
+      run: |
+        cd docs
+        sphinx-build -E -W   -b html . ../docs
+    - name: Upload Documentation Assets
+      uses: csexton/release-asset-action@f68e958070de0b5eaeec26ea045fa25db6d5abcd
+      with:
+        pattern: "docs/*"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload Release Assets
       # the 'official' actions version does not yet support dynamically
       # supplying asset names to upload. @csexton's version chosen based on
@@ -56,6 +65,15 @@ jobs:
       with:
         pattern: "bundles/*"
         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  upload-docs:
+    runs-on: ubuntu-latest
+	  steps:
+		- name: Upload documentation
+			uses: peaceiris/actions-gh-pages@v3
+			with:
+				github_token: ${{ secrets.GITHUB_TOKEN }}
+				publish_dir: ./docs
 
   upload-pypi:
     runs-on: ubuntu-latest
