@@ -106,7 +106,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Links</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/jandelgado/jled-circuitpython-circuitpython/releases/latest">Download from GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/jandelgado/jled-circuitpython/releases/latest">Download from GitHub</a></li>
 </ul>
 
             
@@ -178,6 +178,7 @@
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
 <a class="reference external image-reference" href="https://github.com/jandelgado/jled-circuitpython/actions"><img alt="Build Status" src="https://github.com/jandelgado/jled-circuitpython/workflows/Build%20CI/badge.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/psf/black"><img alt="Code Style: Black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
+<a class="reference external image-reference" href="https://jandelghado.github.io/jled-circuitpython"><img alt="API Documentation" src="https://img.shields.io/badge/-API%20documentation-brightgreen" /></a>
 <p>An embedded library for Python to control LEDs. It uses a <strong>non-blocking</strong>
 approach and can control LEDs in simple (<strong>on</strong>/<strong>off</strong>) and complex
 (<strong>blinking</strong>, <strong>breathing</strong> and more) ways in a <strong>time-driven</strong> manner.</p>
@@ -219,9 +220,9 @@ effect again.</p>
 </section>
 <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
-<p>On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally <a class="reference external" href="https://pypi.org/project/circuitpython-jled/">from
-PyPI</a>.
-To install for current user:</p>
+<p>On supported GNU/Linux systems like the Raspberry Pi (with <a class="reference external" href="https://pypi.org/project/Adafruit-Blinka/">Adafruit-Blinka</a>), you can install the lib
+locally <a class="reference external" href="https://pypi.org/project/circuitpython-jled/">from PyPI</a>.  To
+install for current user:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>circuitpython-jled
 </pre></div>
 </div>
@@ -236,17 +237,53 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
 pip3<span class="w"> </span>install<span class="w"> </span>circuitpython-jled
 </pre></div>
 </div>
+<section id="installing-to-a-connected-circuitpython-device">
+<h2>Installing to a Connected CircuitPython Device<a class="headerlink" href="#installing-to-a-connected-circuitpython-device" title="Permalink to this heading">¶</a></h2>
+<p>Create a directory called <code class="docutils literal notranslate"><span class="pre">jled</span></code> on the device and copy the following files
+into this directory: <code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_pwm_circtuitpython.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">hal_time_circuitython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">__init__.py`</span></code>. Optionally also copy one of the
+examples to <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the root of the filesystem. The overall structure
+is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/
+├─ main.py
+└─ jled
+    ├─ __init__.py
+    ├─ jled.py
+    ├─ hal_pwm_circuitpython.py
+    └─ hal_time_circuitpython.py
+</pre></div>
+</div>
 </section>
 <section id="installing-to-a-connected-circuitpython-device-with-circup">
-<h1>Installing to a Connected CircuitPython Device with Circup<a class="headerlink" href="#installing-to-a-connected-circuitpython-device-with-circup" title="Permalink to this heading">¶</a></h1>
+<h2>Installing to a Connected CircuitPython Device with Circup<a class="headerlink" href="#installing-to-a-connected-circuitpython-device-with-circup" title="Permalink to this heading">¶</a></h2>
 <p>TODO</p>
+</section>
+<section id="installing-on-a-micropython-device">
+<h2>Installing on a MicroPython device<a class="headerlink" href="#installing-on-a-micropython-device" title="Permalink to this heading">¶</a></h2>
+<p>Create a directory called <code class="docutils literal notranslate"><span class="pre">jled</span></code> on the device and <a class="reference external" href="https://pypi.org/project/mpremote/">copy</a> the following files into this directory:
+<code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_pwm_micropython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_time_micropython.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>. Optionally also copy one of the examples to <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the
+root of the filesystem. The overall structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/
+├─ main.py
+└─ jled
+    ├─ jled.py
+    ├─ __init__.py
+    ├─ hal_pwm_micropython.py
+    └─ hal_time_micropython.py
+</pre></div>
+</div>
+<p>To reduce memory consumption, Python source files can be compiled to binary
+<code class="docutils literal notranslate"><span class="pre">mpy</span></code> format using the <a class="reference external" href="https://pypi.org/project/mpy-cross/">mpy-cross</a>
+tool. For convenience, a script is provided here (see <code class="docutils literal notranslate"><span class="pre">scripts/install_mp.sh</span></code>
+to compile and copy jled to a connected device.</p>
+</section>
 </section>
 <section id="documentation">
 <h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h1>
-<p>API documentation for this library can be found on <a class="reference external" href="https://circuitpython-jled.readthedocs.io/">Read the Docs</a>.</p>
-<p>For information on building library documentation, please check out <a class="reference external" href="https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1">this guide</a>.</p>
+<p><a class="reference external" href="https://jandelgado.github.io/jled-circuitpython/">API documentation for this library can be found on here</a>.</p>
 <p>Rebuild the documentation with <code class="docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-E</span> <span class="pre">-W</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">.</span> <span class="pre">_build/html</span></code>
-in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory. Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;.[optional]</span></code> before to install
+in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory. Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;.[optional]&quot;</span></code> before to install
 build-time dependency <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a></p>
 </section>
 <section id="tests">
@@ -260,7 +297,7 @@ $ pytest
 </section>
 <section id="author-copyright">
 <h1>Author &amp; Copyright<a class="headerlink" href="#author-copyright" title="Permalink to this heading">¶</a></h1>
-<p>Copyright © 2022 by Jan Delgado, License: MIT</p>
+<p>Copyright © 2022-2023 by Jan Delgado, License: MIT</p>
 </section>
 <section id="table-of-contents">
 <h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h1>
@@ -325,7 +362,7 @@ $ pytest
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Other Links</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/jandelgado/jled-circuitpython-circuitpython/releases/latest">Download from GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/jandelgado/jled-circuitpython/releases/latest">Download from GitHub</a></li>
 </ul>
 </div>
 </section>
