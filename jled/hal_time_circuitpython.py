@@ -44,7 +44,7 @@ class CircuitPythonTimeHAL:
     @staticmethod
     def ticks_add(ticks, delta):
         """Add a delta to a base number of ticks, performing wraparound at
-        2**29ms.  Note that for any a = 2^n, (b % a == b & (a-1)), which spares
+        2**29ms.  Note that for any a = (2^n)-1, (b%a == b&a), which spares
         us the modulo operation."""
         return (ticks + delta) & _TICKS_MAX
 
