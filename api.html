@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>jled &mdash; JLed CircuitPython and MicroPython Library 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Simple test" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JLed CircuitPython and MicroPython Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Simple test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#pulse-effect-micropython">Pulse Effect (MicroPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#breathing-led">Breathing LED</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#multiple-leds">Multiple LEDs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">jled</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#jled.JLed"><code class="docutils literal notranslate"><span class="pre">JLed</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.blink"><code class="docutils literal notranslate"><span class="pre">JLed.blink()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.breathe"><code class="docutils literal notranslate"><span class="pre">JLed.breathe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.candle"><code class="docutils literal notranslate"><span class="pre">JLed.candle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.deinit"><code class="docutils literal notranslate"><span class="pre">JLed.deinit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.delay_after"><code class="docutils literal notranslate"><span class="pre">JLed.delay_after()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.delay_before"><code class="docutils literal notranslate"><span class="pre">JLed.delay_before()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.fade"><code class="docutils literal notranslate"><span class="pre">JLed.fade()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.fade_off"><code class="docutils literal notranslate"><span class="pre">JLed.fade_off()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.fade_on"><code class="docutils literal notranslate"><span class="pre">JLed.fade_on()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.forever"><code class="docutils literal notranslate"><span class="pre">JLed.forever()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.is_forever"><code class="docutils literal notranslate"><span class="pre">JLed.is_forever</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.is_running"><code class="docutils literal notranslate"><span class="pre">JLed.is_running</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.low_active"><code class="docutils literal notranslate"><span class="pre">JLed.low_active()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.max_brightness"><code class="docutils literal notranslate"><span class="pre">JLed.max_brightness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.min_brightness"><code class="docutils literal notranslate"><span class="pre">JLed.min_brightness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.off"><code class="docutils literal notranslate"><span class="pre">JLed.off()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.on"><code class="docutils literal notranslate"><span class="pre">JLed.on()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.repeat"><code class="docutils literal notranslate"><span class="pre">JLed.repeat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.reset"><code class="docutils literal notranslate"><span class="pre">JLed.reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.set"><code class="docutils literal notranslate"><span class="pre">JLed.set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.stop"><code class="docutils literal notranslate"><span class="pre">JLed.stop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.update"><code class="docutils literal notranslate"><span class="pre">JLed.update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLed.user_func"><code class="docutils literal notranslate"><span class="pre">JLed.user_func()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#jled.JLedSequence"><code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.forever"><code class="docutils literal notranslate"><span class="pre">JLedSequence.forever()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.is_forever"><code class="docutils literal notranslate"><span class="pre">JLedSequence.is_forever</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.is_running"><code class="docutils literal notranslate"><span class="pre">JLedSequence.is_running</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.parallel"><code class="docutils literal notranslate"><span class="pre">JLedSequence.parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.repeat"><code class="docutils literal notranslate"><span class="pre">JLedSequence.repeat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.reset"><code class="docutils literal notranslate"><span class="pre">JLedSequence.reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.sequential"><code class="docutils literal notranslate"><span class="pre">JLedSequence.sequential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.stop"><code class="docutils literal notranslate"><span class="pre">JLedSequence.stop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jled.JLedSequence.update"><code class="docutils literal notranslate"><span class="pre">JLedSequence.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#jled.play"><code class="docutils literal notranslate"><span class="pre">play()</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/jandelgado/jled-circuitpython-circuitpython/releases/latest">Download from GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JLed CircuitPython and MicroPython Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>jled</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="jled">
+<h1>jled<a class="headerlink" href="#jled" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="jled.JLed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">JLed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed" title="Permalink to this definition">¶</a></dt>
+<dd><p>JLed class</p>
+<p>construct a new JLed object connected to the given pin, or using
+the provided hal object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin</strong> – the pin to connect the JLed object to</p></li>
+<li><p><strong>hal</strong> – the HAL object to use</p></li>
+</ul>
+</dd>
+</dl>
+<p>Either pin or hal must be provided. If pin is provided, a HAL instance
+using <code class="docutils literal notranslate"><span class="pre">JLed._DEFAULT_PWM_HAL</span></code> will be created.</p>
+<p>Unless you have special requirements, you will want to initialize
+your <code class="docutils literal notranslate"><span class="pre">JLed</span></code> object like <code class="docutils literal notranslate"><span class="pre">led</span> <span class="pre">=</span> <span class="pre">JLed(board.LED).breathe(1000)</span></code>, i.e.
+by providing the pin the LED is connected to.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.blink">
+<span class="sig-name descname"><span class="pre">blink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration_on</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_off</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.blink"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.blink" title="Permalink to this definition">¶</a></dt>
+<dd><p>In blink mode, the LED cycles through a given number of on-off
+cycles. On- and Off-cycle durations are specified independently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>duration_on</strong> – time in ms to turn the LED on</p></li>
+<li><p><strong>duration_off</strong> – time in ms to turn the LED off</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.breathe">
+<span class="sig-name descname"><span class="pre">breathe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration_fade_on</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_fade_off</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.breathe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.breathe" title="Permalink to this definition">¶</a></dt>
+<dd><p>In breathing mode, the LED smoothly changes the brightness using
+PWM. The <code class="docutils literal notranslate"><span class="pre">breathe</span></code> method takes the period of the effect as an
+argument, however it is also possible to specify fade-on, on- and
+fade-off durations for the breathing mode to customize the effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>duration_fade_on</strong> – if only this parameter is set, then duration_fade_on
+specifies the time in ms of a full breathe period. If also duration_on
+and duration_off are set, this parameter specifies the fade-on time only.</p></li>
+<li><p><strong>duration_on</strong> – if set, specifies time to keep effect at maximum</p></li>
+<li><p><strong>duration_off</strong> – if set, specifies fade-off time</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.candle">
+<span class="sig-name descname"><span class="pre">candle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">65535</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.candle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.candle" title="Permalink to this definition">¶</a></dt>
+<dd><p>In candle mode, the random flickering of a candle or fire is simulated.
+The idea was taken from <a class="reference external" href="https://cpldcpu.wordpress.com/2013/12/08/hacking-a-candleflicker-led/">here</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> – controls the speed of the effect. 0 for fastest,
+increasing speed divides into halve per increment.
+The default value is 6.</p></li>
+<li><p><strong>jitter</strong> – the amount of jittering. 0 none (constant on), 255
+maximum. Default value is 15.</p></li>
+<li><p><strong>period</strong> – <ul>
+<li><p>Period of effect in ms. The default value is 65535 ms.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p>The default settings simulate a candle. For a fire effect for
+example use call the method with e.g. <code class="docutils literal notranslate"><span class="pre">speed=5</span></code> and <code class="docutils literal notranslate"><span class="pre">jitter=100</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.deinit">
+<span class="sig-name descname"><span class="pre">deinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.deinit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.deinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call <code class="docutils literal notranslate"><span class="pre">deinit</span></code> to free hardware resources used by this object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.delay_after">
+<span class="sig-name descname"><span class="pre">delay_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.delay_after"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.delay_after" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the <code class="docutils literal notranslate"><span class="pre">delay_after</span></code> method to specify a delay after each
+repetition of an effect. The default value is 0 ms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time</strong> – delay time in milliseconds</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.delay_before">
+<span class="sig-name descname"><span class="pre">delay_before</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.delay_before"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.delay_before" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the <code class="docutils literal notranslate"><span class="pre">delay_before</span></code> method to specify a delay before the first
+effect starts.  The default value is 0 ms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time</strong> – delay time in milliseconds</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.fade">
+<span class="sig-name descname"><span class="pre">fade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.fade"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.fade" title="Permalink to this definition">¶</a></dt>
+<dd><p>The fade effect allows to fade from any start value <code class="docutils literal notranslate"><span class="pre">start</span></code> to
+any target value <code class="docutils literal notranslate"><span class="pre">end</span></code> with the given period. Internally it sets up a
+<a class="reference internal" href="#jled.JLed.fade" title="jled.JLed.fade"><code class="xref py py-func docutils literal notranslate"><span class="pre">fade()</span></code></a> or <a class="reference internal" href="#jled.JLed.fade_off" title="jled.JLed.fade_off"><code class="xref py py-func docutils literal notranslate"><span class="pre">fade_off()</span></code></a> effect and <a class="reference internal" href="#jled.JLed.min_brightness" title="jled.JLed.min_brightness"><code class="xref py py-func docutils literal notranslate"><span class="pre">min_brightness()</span></code></a> and
+<a class="reference internal" href="#jled.JLed.max_brightness" title="jled.JLed.max_brightness"><code class="xref py py-func docutils literal notranslate"><span class="pre">max_brightness()</span></code></a> values properly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> – start brightness values</p></li>
+<li><p><strong>end</strong> – end brightness value</p></li>
+<li><p><strong>period</strong> – period of the effect</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.fade_off">
+<span class="sig-name descname"><span class="pre">fade_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.fade_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.fade_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>In fade_off mode, the LED is smoothly faded off using PWM. The fade
+starts at 100% brightness. Internally it is implemented as a mirrored
+version of the <a class="reference internal" href="#jled.JLed.fade_on" title="jled.JLed.fade_on"><code class="xref py py-func docutils literal notranslate"><span class="pre">fade_on()</span></code></a> function, i.e.
+<code class="docutils literal notranslate"><span class="pre">fade_off(t)</span> <span class="pre">=</span> <span class="pre">fade_on(period-t)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>period</strong> – period of the effect</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.fade_on">
+<span class="sig-name descname"><span class="pre">fade_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.fade_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.fade_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>In fade_on mode, the LED is smoothly faded on to 100% brightness
+using PWM. The <code class="docutils literal notranslate"><span class="pre">fade_on</span></code> method takes the period of the effect as an
+argument.</p>
+<p>The brightness function uses an <a class="reference external" href="https://www.wolframalpha.com/input/?i=plot+(exp(sin((t-1000%2F2.)*PI%2F1000))-0.36787944)*108.0++t%3D0+to+1000">approximation of this function (example with
+period 1000</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>period</strong> – period of the effect</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.forever">
+<span class="sig-name descname"><span class="pre">forever</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.forever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.forever" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set effect to run forever.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="jled.JLed.is_forever">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_forever</span></span><a class="headerlink" href="#jled.JLed.is_forever" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if effect is set to run forever, otherwise False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="jled.JLed.is_running">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_running</span></span><a class="headerlink" href="#jled.JLed.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the effect is running, otherwise False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.low_active">
+<span class="sig-name descname"><span class="pre">low_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.low_active"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.low_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the <code class="docutils literal notranslate"><span class="pre">low_active</span></code> method when the connected LED is low active.
+All output will be inverted by JLed (i.e. instead of x, the value of
+255-x will be set).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.max_brightness">
+<span class="sig-name descname"><span class="pre">max_brightness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.max_brightness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.max_brightness" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">max_brightness</span></code> method is used to set the maximum brightness
+level of the LED. A level of 255 (the default) is full brightness, while 0
+effectively turns the LED off. In the same way, the <code class="docutils literal notranslate"><span class="pre">min_brightness</span></code>
+method sets the minimum brightness level. The default minimum level is 0. If
+minimum or maximum brightness levels are set, the output value is scaled to be
+within the interval defined by <code class="docutils literal notranslate"><span class="pre">[minimum</span> <span class="pre">brightness,</span> <span class="pre">maximum</span> <span class="pre">brightness]</span></code>: a
+value of 0 will be mapped to the minimum brightness level, a value of 255 will
+be mapped to the maximum brightness level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.min_brightness">
+<span class="sig-name descname"><span class="pre">min_brightness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.min_brightness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.min_brightness" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#jled.JLed.max_brightness" title="jled.JLed.max_brightness"><code class="xref py py-func docutils literal notranslate"><span class="pre">max_brightness()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.off">
+<span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">off</span></code> method works like <a class="reference internal" href="#jled.JLed.on" title="jled.JLed.on"><code class="xref py py-func docutils literal notranslate"><span class="pre">on()</span></code></a>, except that it
+turns the LED off, i.e. it sets the brightness to 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>period</strong> – period of the effect. Period will be relevant when
+multiple JLed objects are controlled by a JLedSequence</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.on">
+<span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calling <code class="docutils literal notranslate"><span class="pre">on</span></code> turns the LED on. To immediately turn a LED on,
+remember to also call <a class="reference internal" href="#jled.JLed.update" title="jled.JLed.update"><code class="xref py py-func docutils literal notranslate"><span class="pre">update()</span></code></a> like in
+<code class="docutils literal notranslate"><span class="pre">JLed(board.LED).on().update()</span></code>. The <code class="docutils literal notranslate"><span class="pre">period</span></code> is optional and defaults
+to 1ms. <code class="docutils literal notranslate"><span class="pre">on</span></code> basically calls <a class="reference internal" href="#jled.JLed.set" title="jled.JLed.set"><code class="xref py py-func docutils literal notranslate"><span class="pre">set()</span></code></a> with brightness
+set to 255.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>period</strong> – period of the effect. Period will be relevant when
+multiple JLed objects are controlled by a JLedSequence</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.repeat">
+<span class="sig-name descname"><span class="pre">repeat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.repeat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.repeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the <code class="docutils literal notranslate"><span class="pre">repeat</span></code> method to specify the number of repetitions. The
+default value is 1 repetition. The <a class="reference internal" href="#jled.JLed.forever" title="jled.JLed.forever"><code class="xref py py-func docutils literal notranslate"><span class="pre">forever()</span></code></a> method
+sets to repeat the effect forever. Each repetition includes a full
+period of the effect and the time specified by
+<a class="reference internal" href="#jled.JLed.delay_after" title="jled.JLed.delay_after"><code class="xref py py-func docutils literal notranslate"><span class="pre">delay_after()</span></code></a> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num</strong> – number of repetitions</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>A call to <code class="docutils literal notranslate"><span class="pre">reset</span></code> brings the JLed object to its initial state.
+Use it when you want to start-over an effect.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brightness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the <code class="docutils literal notranslate"><span class="pre">set</span></code> method to set the brightness to the given value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>brightness</strong> – brightness (0..255) to set</p></li>
+<li><p><strong>period</strong> – period of the effect. Period will be relevant when
+multiple JLed objects are controlled by a JLedSequence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call <code class="docutils literal notranslate"><span class="pre">stop</span></code> to immediately turn the LED off and stop any running
+effects.  Further calls to <a class="reference internal" href="#jled.JLed.update" title="jled.JLed.update"><code class="xref py py-func docutils literal notranslate"><span class="pre">update()</span></code></a> will have no
+effect unless the <a class="reference internal" href="#jled.JLed.reset" title="jled.JLed.reset"><code class="xref py py-func docutils literal notranslate"><span class="pre">reset()</span></code></a> method is called or a new
+effect is activated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call <code class="docutils literal notranslate"><span class="pre">update</span></code> periodically to update the LED.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the effect is active, otherwise False, when finished.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLed.user_func">
+<span class="sig-name descname"><span class="pre">user_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_eval</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.user_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.user_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>It is also possible to provide a user defined brightness evaluator.
+The class must implement two methods:</p>
+<p><code class="docutils literal notranslate"><span class="pre">eval(t)</span></code> - the brightness evaluation function that calculates a
+brightness for the given time <code class="docutils literal notranslate"><span class="pre">t</span></code>. The brightness must be returned as
+an unsigned byte , where 0 means LED off and 255 means full brightness.
+<code class="docutils literal notranslate"><span class="pre">period()</span></code> - returns the period of the effect.</p>
+<p>The unit of time is milliseconds.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
+<span class="c1"># SPDX-License-Identifier: MIT</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">JLed User defined effect example</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">board</span>
+<span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+
+
+<span class="k">class</span> <span class="nc">UserEffect</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">=</span> <span class="n">period</span>
+
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;this function returns changes between 0 and 255 and</span>
+<span class="sd">        vice versa every period/2 ms&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">255</span> <span class="o">*</span> <span class="p">((</span><span class="n">t</span> <span class="o">//</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span>
+
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">user_func</span><span class="p">(</span><span class="n">UserEffect</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLed instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="jled.JLedSequence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">JLedSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> class allows controlling a group of effects
+either in parallel or sequentially. An effect is either a <a class="reference internal" href="#jled.JLed" title="jled.jled.JLed"><code class="xref py py-class docutils literal notranslate"><span class="pre">JLed</span></code></a>
+object or a <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span><span class="p">,</span> <span class="n">JLedSequence</span>
+
+<span class="n">led1</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">led2</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">GP2</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">seq</span> <span class="o">=</span> <span class="n">JLedSequence</span><span class="p">(</span><span class="n">JLedSequence</span><span class="o">.</span><span class="n">SEQUENTIAL</span><span class="p">,</span> <span class="p">[</span><span class="n">led1</span><span class="p">,</span> <span class="n">led2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Construct a JLedSequence for the given list of effects. An effect
+can be either a <code class="docutils literal notranslate"><span class="pre">JLed</span></code> object, or another <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code>.</p>
+<p>For convenience, two additional functions are provided:
+<a class="reference internal" href="#jled.JLedSequence.parallel" title="jled.JLedSequence.parallel"><code class="xref py py-func docutils literal notranslate"><span class="pre">parallel()</span></code></a> and <a class="reference internal" href="#jled.JLedSequence.sequential" title="jled.JLedSequence.sequential"><code class="xref py py-func docutils literal notranslate"><span class="pre">sequential()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> – one of <code class="docutils literal notranslate"><span class="pre">JLedSequence.PARALLEL</span></code> or <code class="docutils literal notranslate"><span class="pre">JLedSequence.SEQUENTIAL</span></code></p></li>
+<li><p><strong>leds</strong> – list of effects to control</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLedSequence.forever">
+<span class="sig-name descname"><span class="pre">forever</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.forever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.forever" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set this <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> to run forever.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLedSequence object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="jled.JLedSequence.is_forever">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_forever</span></span><a class="headerlink" href="#jled.JLedSequence.is_forever" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if this <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> is set to run
+<a class="reference internal" href="#jled.JLedSequence.forever" title="jled.JLedSequence.forever"><code class="xref py py-func docutils literal notranslate"><span class="pre">forever()</span></code></a>, otherwise False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="jled.JLedSequence.is_running">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_running</span></span><a class="headerlink" href="#jled.JLedSequence.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> is running, otherwise False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLedSequence.parallel">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.parallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a JLedSequence to play given effects in parallel. This is
+a convenience method for calling <code class="docutils literal notranslate"><span class="pre">JLedSequence(JLedSequence.PARALLEL,</span> <span class="pre">leds)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>leds</strong> – list of effects to play</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a new JLedSequence object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLedSequence.repeat">
+<span class="sig-name descname"><span class="pre">repeat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.repeat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.repeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the <code class="docutils literal notranslate"><span class="pre">repeat</span></code> method to specify the number of repetitions. The
+default value is 1 repetition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num</strong> – number of repetitions</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>this JLedSequence object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLedSequence.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset all LEDs controlled by this <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> and the
+JLedSequence itself. Calling update afterwards will start all all LEDs
+over.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLedSequence object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLedSequence.sequential">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sequential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.sequential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.sequential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a JLedSequence to play given effects sequentially. This is
+a convenience method for calling <code class="docutils literal notranslate"><span class="pre">JLedSequence(JLedSequence.SEQUENTIAL,</span> <span class="pre">leds)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>leds</strong> – list of effects to play</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a new JLedSequence object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLedSequence.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off all objects controlled by this <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> and stops
+the sequence. Further calls to <a class="reference internal" href="#jled.JLedSequence.update" title="jled.JLedSequence.update"><code class="xref py py-func docutils literal notranslate"><span class="pre">update()</span></code></a> will have no effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this JLedSequence object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jled.JLedSequence.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call update periodically to play the effects/LEDs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the effect is still running, otherwise False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="jled.play">
+<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">leds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/play.html#play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>play puts the given list of objects in a
+<a class="reference internal" href="#jled.JLedSequence" title="jled.jled_sequence.JLedSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">JLedSequence</span></code></a> and runs the effects, until the last
+effect finished. This function is intended to be used when interactively
+exploring JLed in the Python REPL.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span><span class="p">,</span> <span class="n">play</span>
+
+<span class="n">led1</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">led2</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">GP2</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">play</span><span class="p">(</span><span class="n">led1</span><span class="p">,</span> <span class="n">led2</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>leds</strong> – list of effects to “play”</p></li>
+<li><p><strong>seq</strong> – set to True to play effects sequentially. When False (default),
+effects will be played in parallel.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Simple test" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022 - 2023 Jan Delgado.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

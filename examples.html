@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Simple test &mdash; JLed CircuitPython and MicroPython Library 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="jled" href="api.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JLed CircuitPython and MicroPython Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#pulse-effect-micropython">Pulse Effect (MicroPython)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#breathing-led">Breathing LED</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#multiple-leds">Multiple LEDs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">jled</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/jandelgado/jled-circuitpython-circuitpython/releases/latest">Download from GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JLed CircuitPython and MicroPython Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Simple test</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="simple-test">
+<h1>Simple test<a class="headerlink" href="#simple-test" title="Permalink to this heading">¶</a></h1>
+<p>Ensure your device works with this simple test.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">examples/jled_simpletest.py</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
+<span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
+<span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">JLed Hello world</span>
+<span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">led</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">13</span>    <span class="n">led</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="pulse-effect-micropython">
+<h1>Pulse Effect (MicroPython)<a class="headerlink" href="#pulse-effect-micropython" title="Permalink to this heading">¶</a></h1>
+<p>This example targets a MicroPython device. The only difference to CircuitPython
+is, that on MicroPython there is no <a class="reference external" href="https://docs.circuitpython.org/en/latest/shared-bindings/board/index.html#module-board" title="(in Adafruit CircuitPython v8.0.0-beta.6)"><code class="xref any docutils literal notranslate"><span class="pre">board</span></code></a> package and therefore the pin are
+addressed numerically.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">examples/jled_micropython.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
+<span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
+<span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">JLead pulse effect example (micropython)</span>
+<span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">led1</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">min_brightness</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">delay_before</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">10</span><span class="n">led2</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">min_brightness</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">13</span>    <span class="n">led1</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="linenos">14</span>    <span class="n">led2</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="breathing-led">
+<h1>Breathing LED<a class="headerlink" href="#breathing-led" title="Permalink to this heading">¶</a></h1>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">examples/jled_breathe.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
+<span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
+<span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">JLead breathe example</span>
+<span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">led</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">13</span>    <span class="n">led</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="multiple-leds">
+<h1>Multiple LEDs<a class="headerlink" href="#multiple-leds" title="Permalink to this heading">¶</a></h1>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">examples/jled_sequece.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
+<span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
+<span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">drive multiple LEDs using different effects with a JLedSequence</span>
+<span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span><span class="p">,</span> <span class="n">JLedSequence</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">led0</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">750</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">11</span><span class="n">led1</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">GP2</span><span class="p">)</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">12</span><span class="n">led2</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">GP3</span><span class="p">)</span><span class="o">.</span><span class="n">fade_off</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">13</span><span class="n">led3</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">GP4</span><span class="p">)</span><span class="o">.</span><span class="n">fade_on</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">seq</span> <span class="o">=</span> <span class="n">JLedSequence</span><span class="o">.</span><span class="n">parallel</span><span class="p">([</span><span class="n">led0</span><span class="p">,</span> <span class="n">led1</span><span class="p">,</span> <span class="n">led2</span><span class="p">,</span> <span class="n">led3</span><span class="p">])</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">18</span>    <span class="n">seq</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="api.html" class="btn btn-neutral float-right" title="jled" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022 - 2023 Jan Delgado.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
