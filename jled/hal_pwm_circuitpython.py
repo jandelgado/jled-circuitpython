@@ -24,10 +24,11 @@ class CircuitPythonPWMHAL:
 
         self._pin = pin
         # PWM instances are shared among JLed instances to be able
-        # to instanciate multiple JLed objects using the same PWM
-        if not pin in CircuitPythonPWMHAL._leds:
+        # to instanciate multiple JLed objects using the same PWM. We need
+        # to use str(pin) as the key because pin might not be hashable
+        if not str(pin) in CircuitPythonPWMHAL._leds:
             led = pwmio.PWMOut(pin, frequency=frequency, duty_cycle=0)
-            CircuitPythonPWMHAL._leds[pin] = led
+            CircuitPythonPWMHAL._leds[str(pin)] = led
 
     def analog_write(self, duty):
         """write duty (0..255) to PWM port controlled by this HAL"""
@@ -36,8 +37,8 @@ class CircuitPythonPWMHAL:
 
     @property
     def _led(self):
-        return CircuitPythonPWMHAL._leds[self._pin]
+        return CircuitPythonPWMHAL._leds[str(self._pin)]
 
     def deinit(self):
         self._led.deinit()
-        del CircuitPythonPWMHAL._leds[self._pin]
+        del CircuitPythonPWMHAL._leds[str(self._pin)]

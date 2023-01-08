@@ -9,6 +9,10 @@ Introduction
     :target: https://github.com/psf/black
     :alt: Code Style: Black
 
+.. image:: https://img.shields.io/badge/-API%20documentation-brightgreen
+    :target: https://jandelghado.github.io/jled-circuitpython
+    :alt: API Documentation
+
 An embedded library for Python to control LEDs. It uses a **non-blocking**
 approach and can control LEDs in simple (**on**/**off**) and complex
 (**blinking**, **breathing** and more) ways in a **time-driven** manner.
@@ -57,12 +61,10 @@ Cheat Sheet
 Installation
 =============
 
-.. note:: This library is not available on PyPI yet. Install documentation is
-          included as a standard element. Stay tuned for PyPI availability!
-
-On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
-PyPI <https://pypi.org/project/circuitpython-jled/>`_.
-To install for current user:
+On supported GNU/Linux systems like the Raspberry Pi (with `Adafruit-Blinka
+<https://pypi.org/project/Adafruit-Blinka/>`_), you can install the lib
+locally `from PyPI <https://pypi.org/project/circuitpython-jled/>`_.  To
+install for current user:
 
 .. code-block:: shell
 
@@ -83,40 +85,63 @@ To install in a virtual environment in your current project:
     source .env/bin/activate
     pip3 install circuitpython-jled
 
+Installing to a Connected CircuitPython Device
+----------------------------------------------
+
+Create a directory called ``jled`` on the device and copy the following files
+into this directory: ``jled.py``, ``hal_pwm_circtuitpython.py``,
+``hal_time_circuitython.py``, ``__init__.py```. Optionally also copy one of the
+examples to ``main.py`` to the root of the filesystem. The overall structure
+is:
+
+.. code-block::
+
+   /
+   ├─ main.py
+   └─ jled
+       ├─ __init__.py
+       ├─ jled.py
+       ├─ hal_pwm_circuitpython.py
+       └─ hal_time_circuitpython.py
+
+
 Installing to a Connected CircuitPython Device with Circup
-==========================================================
+----------------------------------------------------------
 
-Make sure that you have ``circup`` installed in your Python environment.
-Install it with the following command if necessary:
+TODO
 
-.. code-block:: shell
+Installing on a MicroPython device
+----------------------------------
 
-    pip3 install circup
+Create a directory called ``jled`` on the device and `copy
+<https://pypi.org/project/mpremote/>`_ the following files into this directory:
+``jled.py``, ``hal_pwm_micropython.py``, ``hal_time_micropython.py``,
+``__init__.py``. Optionally also copy one of the examples to ``main.py`` to the
+root of the filesystem. The overall structure is:
 
-With ``circup`` installed and your CircuitPython device connected use the
-following command to install:
+.. code-block::
 
-.. code-block:: shell
+   /
+   ├─ main.py
+   └─ jled
+       ├─ jled.py
+       ├─ __init__.py
+       ├─ hal_pwm_micropython.py
+       └─ hal_time_micropython.py
 
-    circup install jled
-
-Or the following command to update an existing version:
-
-.. code-block:: shell
-
-    circup update
+To reduce memory consumption, Python source files can be compiled to binary
+``mpy`` format using the `mpy-cross <https://pypi.org/project/mpy-cross/>`_
+tool. For convenience, a script is provided here (see ``scripts/install_mp.sh``
+to compile and copy jled to a connected device.
 
 Documentation
 =============
 
-API documentation for this library can be found on `Read the Docs
-<https://circuitpython-jled.readthedocs.io/>`_.
-
-For information on building library documentation, please check out `this guide
-<https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
+`API documentation for this library can be found on here
+<https://jandelgado.github.io/jled-circuitpython/>`_.
 
 Rebuild the documentation with ``sphinx-build -E -W -b html . _build/html``
-in the ``docs`` directory. Run ``pip install ".[optional]`` before to install
+in the ``docs`` directory. Run ``pip install ".[optional]"`` before to install
 build-time dependency `Sphinx <https://www.sphinx-doc.org/>`_
 
 Tests
@@ -134,4 +159,4 @@ To run the ``pre-commit-hook`` locally, run ``pre-commit run --all-files``
 Author & Copyright
 ==================
 
-Copyright © 2022 by Jan Delgado, License: MIT
+Copyright © 2022-2023 by Jan Delgado, License: MIT
