@@ -15,7 +15,8 @@ jobs:
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
+      run: |
+        # echo "$GITHUB_CONTEXT"
     - name: Translate Repo Name For Build Tools filename_prefix
       id: repo-name
       run: |
@@ -45,15 +46,6 @@ jobs:
         source actions-ci/install.sh
     - name: Build assets
       run: circuitpython-build-bundles --filename_prefix ${{ steps.repo-name.outputs.repo-name }} --package_folder_prefix "" --library_location .
-    - name: Build documentation
-      run: |
-        cd docs
-        sphinx-build -E -W   -b html . _build/html
-    - name: Upload Documentation Assets
-      uses: csexton/release-asset-action@f68e958070de0b5eaeec26ea045fa25db6d5abcd
-      with:
-        pattern: "docs/_build/_html/*"
-        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload Release Assets
       # the 'official' actions version does not yet support dynamically
       # supplying asset names to upload. @csexton's version chosen based on
@@ -69,32 +61,36 @@ jobs:
   upload-docs:
     runs-on: ubuntu-latest
     steps:
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.x"
+    - name: Checkout Current Repo
+      uses: actions/checkout@v3
+    - name: Build documentation
+      run: |
+        pip install ".[optional]"
+        cd docs
+        sphinx-build -E -W   -b html . _build/html
     - name: Upload documentation
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
+        publish_dir: ./docs/_build/html
 
   upload-pypi:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Check For pyproject.toml
-      id: need-pypi
-      run: |
-        echo ::set-output name=pyproject-toml::$( find . -wholename './pyproject.toml' )
     - name: Set up Python
-      if: contains(steps.need-pypi.outputs.pyproject-toml, 'pyproject.toml')
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
     - name: Install dependencies
-      if: contains(steps.need-pypi.outputs.pyproject-toml, 'pyproject.toml')
       run: |
         python -m pip install --upgrade pip
         pip install --upgrade build twine
     - name: Build
-      if: contains(steps.need-pypi.outputs.pyproject-toml, 'pyproject.toml')
       run: |
         # fix image links in README.rst for display in pypi
         sed -i -e "s/\.images\//https:\/\/cdn.jsdelivr.net\/gh\/jandelgado\/jled@${{github.event.release.tag_name}}\/.images\//g" README.rst
@@ -104,14 +100,12 @@ jobs:
         done;
         python -m build
     - name: Publish to test.pypi.org
-      if: contains(steps.need-pypi.outputs.pyproject-toml, 'pyproject.toml')
       env:
         TWINE_USERNAME: "__token__"
         TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
       run: |
         twine upload --repository testpypi dist/*
     - name: Publish to PyPi
-      if: contains(steps.need-pypi.outputs.pyproject-toml, 'pyproject.toml')
       env:
         TWINE_USERNAME: "__token__"
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
