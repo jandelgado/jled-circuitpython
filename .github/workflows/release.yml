@@ -89,7 +89,7 @@ jobs:
     - name: Build
       run: |
         # fix image links in README.rst for display in pypi
-        sed -i -e "s/\.images\//https:\/\/cdn.jsdelivr.net\/gh\/jandelgado\/jled@${{github.event.release.tag_name}}\/.images\//g" README.rst
+        sed -i -e "s/\.images\//https:\/\/cdn.jsdelivr.net\/gh\/jandelgado\/jled-circuitpython@${{github.event.release.tag_name}}\/.images\//g" README.rst
         cat README.rst
         for file in $(find -not -path "./.*" -not -path "./docs*" \( -name "*.py" -o -name "*.toml" \) ); do
             sed -i -e "s/0.0.0+auto.0/${{github.event.release.tag_name}}/" $file;
