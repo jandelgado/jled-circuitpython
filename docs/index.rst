@@ -24,7 +24,7 @@ Table of Contents
 .. toctree::
     :caption: Other Links
 
-    Download from GitHub <https://github.com/jandelgado/jled-circuitpython-circuitpython/releases/latest>
+    Download from GitHub <https://github.com/jandelgado/jled-circuitpython/releases/latest>
 
 Indices and tables
 ==================
