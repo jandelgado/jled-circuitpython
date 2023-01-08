@@ -26,12 +26,12 @@ C++ library.
 Features
 ========
 
-* non-blocking
-* effects: simple on/off, breathe, blink, candle, fade, user-defined
-* supports inverted  polarity of LED
-* easy configuration using fluent interface
-* can control groups of LEDs sequentially or in parallel
-* supports CircuitPython and MicroPython
+- non-blocking
+- effects: simple on/off, breathe, blink, candle, fade, user-defined
+- supports inverted  polarity of LED
+- easy configuration using fluent interface
+- can control groups of LEDs sequentially or in parallel
+- supports CircuitPython and MicroPython
 
 Usage Example
 =============
