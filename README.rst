@@ -10,7 +10,7 @@ Introduction
     :alt: Code Style: Black
 
 .. image:: https://img.shields.io/badge/-API%20documentation-brightgreen
-    :target: https://jandelghado.github.io/jled-circuitpython
+    :target: https://jandelgado.github.io/jled-circuitpython
     :alt: API Documentation
 
 An embedded library for Python to control LEDs. It uses a **non-blocking**
