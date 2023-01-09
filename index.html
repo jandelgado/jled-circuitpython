@@ -99,6 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html#pulse-effect-micropython">Pulse Effect (MicroPython)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html#breathing-led">Breathing LED</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html#multiple-leds">Multiple LEDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#user-defined-effect">User defined Effect</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
@@ -240,17 +241,19 @@ pip3<span class="w"> </span>install<span class="w"> </span>circuitpython-jled
 <section id="installing-to-a-connected-circuitpython-device">
 <h2>Installing to a Connected CircuitPython Device<a class="headerlink" href="#installing-to-a-connected-circuitpython-device" title="Permalink to this heading">¶</a></h2>
 <p>Create a directory called <code class="docutils literal notranslate"><span class="pre">jled</span></code> on the device and copy the following files
-into this directory: <code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_pwm_circtuitpython.py</span></code>,
-<code class="docutils literal notranslate"><span class="pre">hal_time_circuitython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">__init__.py`</span></code>. Optionally also copy one of the
-examples to <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the root of the filesystem. The overall structure
-is:</p>
+into this directory: <code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">jled_sequence.py</span></code>
+<code class="docutils literal notranslate"><span class="pre">hal_pwm_circtuitpython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_time_circuitpython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">play.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">__init__.py`</span></code>. Optionally also copy the <code class="docutils literal notranslate"><span class="pre">jled_micropython.py</span></code> example as
+<code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the root of the filesystem.  The overall structure is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/
 ├─ main.py
 └─ jled
     ├─ __init__.py
-    ├─ jled.py
     ├─ hal_pwm_circuitpython.py
-    └─ hal_time_circuitpython.py
+    ├─ hal_time_circuitpython.py
+    ├─ jled.py
+    ├─ jled_sequence.py
+    └─ play.py
 </pre></div>
 </div>
 </section>
@@ -261,22 +264,25 @@ is:</p>
 <section id="installing-on-a-micropython-device">
 <h2>Installing on a MicroPython device<a class="headerlink" href="#installing-on-a-micropython-device" title="Permalink to this heading">¶</a></h2>
 <p>Create a directory called <code class="docutils literal notranslate"><span class="pre">jled</span></code> on the device and <a class="reference external" href="https://pypi.org/project/mpremote/">copy</a> the following files into this directory:
-<code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_pwm_micropython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_time_micropython.py</span></code>,
-<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>. Optionally also copy one of the examples to <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the
-root of the filesystem. The overall structure is:</p>
+into this directory: <code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">jled_sequence.py</span></code>
+<code class="docutils literal notranslate"><span class="pre">hal_pwm_micropython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_time_micropython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">play.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">__init__.py`</span></code>. Optionally also copy one of the example as <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the
+root of the filesystem.  The overall structure is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/
 ├─ main.py
 └─ jled
-    ├─ jled.py
     ├─ __init__.py
     ├─ hal_pwm_micropython.py
-    └─ hal_time_micropython.py
+    ├─ hal_time_micropython.py
+    ├─ jled.py
+    ├─ jled_sequence.py
+    └─ play.py
 </pre></div>
 </div>
 <p>To reduce memory consumption, Python source files can be compiled to binary
 <code class="docutils literal notranslate"><span class="pre">mpy</span></code> format using the <a class="reference external" href="https://pypi.org/project/mpy-cross/">mpy-cross</a>
-tool. For convenience, a script is provided here (see <code class="docutils literal notranslate"><span class="pre">scripts/install_mp.sh</span></code>
-to compile and copy jled to a connected device.</p>
+tool. For convenience, a script to compile and copy jled to a connected device
+is provided here (see <code class="docutils literal notranslate"><span class="pre">scripts/install_mp.sh</span></code>.</p>
 </section>
 </section>
 <section id="documentation">
@@ -310,6 +316,7 @@ $ pytest
 <li class="toctree-l1"><a class="reference internal" href="examples.html#pulse-effect-micropython">Pulse Effect (MicroPython)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html#breathing-led">Breathing LED</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html#multiple-leds">Multiple LEDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#user-defined-effect">User defined Effect</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">

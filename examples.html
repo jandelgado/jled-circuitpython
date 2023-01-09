@@ -100,6 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="#pulse-effect-micropython">Pulse Effect (MicroPython)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#breathing-led">Breathing LED</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#multiple-leds">Multiple LEDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#user-defined-effect">User defined Effect</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
@@ -265,6 +266,41 @@ addressed numerically.</p>
 <span class="linenos">16</span>
 <span class="linenos">17</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 <span class="linenos">18</span>    <span class="n">seq</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="user-defined-effect">
+<h1>User defined Effect<a class="headerlink" href="#user-defined-effect" title="Permalink to this heading">¶</a></h1>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">examples/jled_user_func.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
+<span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
+<span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">JLed User defined effect example</span>
+<span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="k">class</span> <span class="nc">UserEffect</span><span class="p">:</span>
+<span class="linenos">12</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+<span class="linenos">13</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">=</span> <span class="n">period</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="linenos">16</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;this function returns changes between 0 and 255 and</span>
+<span class="linenos">17</span><span class="sd">        vice versa every period/2 ms&quot;&quot;&quot;</span>
+<span class="linenos">18</span>        <span class="k">return</span> <span class="mi">255</span> <span class="o">*</span> <span class="p">((</span><span class="n">t</span> <span class="o">//</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">21</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">led</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">user_func</span><span class="p">(</span><span class="n">UserEffect</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">27</span>    <span class="n">led</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
