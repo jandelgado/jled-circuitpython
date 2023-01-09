@@ -6,8 +6,6 @@ from .jled import JLed
 from .jled_sequence import JLedSequence
 from .play import play
 
-__all__ = ["JLed", "JLedSequence", "play"]
-
 try:
     # running on CircuitPython?
     from .hal_pwm_circuitpython import CircuitPythonPWMHAL as _PWMHAL
@@ -23,8 +21,8 @@ except ImportError:
     try:
         # running on MicroPython?
         import machine
-        from .hal_pwm_micropython import MicroPython_PWMHAL as _PWMHAL
-        from .hal_time_micropython import MicroPython_TimeHAL as _TimeHAL
+        from .hal_pwm_micropython import MicroPythonPWMHAL as _PWMHAL
+        from .hal_time_micropython import MicroPythonTimeHAL as _TimeHAL
 
     except ImportError:
         from .python_pwm_hal import PythonPWMHAL as _PWMHAL

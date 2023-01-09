@@ -89,10 +89,10 @@ Installing to a Connected CircuitPython Device
 ----------------------------------------------
 
 Create a directory called ``jled`` on the device and copy the following files
-into this directory: ``jled.py``, ``hal_pwm_circtuitpython.py``,
-``hal_time_circuitython.py``, ``__init__.py```. Optionally also copy one of the
-examples to ``main.py`` to the root of the filesystem. The overall structure
-is:
+into this directory: ``jled.py``, ``jled_sequence.py``
+``hal_pwm_circtuitpython.py``, ``hal_time_circuitpython.py``, ``play.py``,
+``__init__.py```. Optionally also copy the ``jled_micropython.py`` example as
+``main.py`` to the root of the filesystem.  The overall structure is:
 
 .. code-block::
 
@@ -100,9 +100,11 @@ is:
    ├─ main.py
    └─ jled
        ├─ __init__.py
-       ├─ jled.py
        ├─ hal_pwm_circuitpython.py
-       └─ hal_time_circuitpython.py
+       ├─ hal_time_circuitpython.py
+       ├─ jled.py
+       ├─ jled_sequence.py
+       └─ play.py
 
 
 Installing to a Connected CircuitPython Device with Circup
@@ -115,24 +117,27 @@ Installing on a MicroPython device
 
 Create a directory called ``jled`` on the device and `copy
 <https://pypi.org/project/mpremote/>`_ the following files into this directory:
-``jled.py``, ``hal_pwm_micropython.py``, ``hal_time_micropython.py``,
-``__init__.py``. Optionally also copy one of the examples to ``main.py`` to the
-root of the filesystem. The overall structure is:
+into this directory: ``jled.py``, ``jled_sequence.py``
+``hal_pwm_micropython.py``, ``hal_time_micropython.py``, ``play.py``,
+``__init__.py```. Optionally also copy one of the example as ``main.py`` to the
+root of the filesystem.  The overall structure is:
 
 .. code-block::
 
    /
    ├─ main.py
    └─ jled
-       ├─ jled.py
        ├─ __init__.py
        ├─ hal_pwm_micropython.py
-       └─ hal_time_micropython.py
+       ├─ hal_time_micropython.py
+       ├─ jled.py
+       ├─ jled_sequence.py
+       └─ play.py
 
 To reduce memory consumption, Python source files can be compiled to binary
 ``mpy`` format using the `mpy-cross <https://pypi.org/project/mpy-cross/>`_
-tool. For convenience, a script is provided here (see ``scripts/install_mp.sh``
-to compile and copy jled to a connected device.
+tool. For convenience, a script to compile and copy jled to a connected device
+is provided here (see ``scripts/install_mp.sh``.
 
 Documentation
 =============
