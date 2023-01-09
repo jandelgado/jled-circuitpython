@@ -31,3 +31,10 @@ Multiple LEDs
 .. literalinclude:: ../examples/jled_sequence.py
     :caption: examples/jled_sequece.py
     :linenos:
+
+User defined Effect
+-------------------
+
+.. literalinclude:: ../examples/jled_user_func.py
+    :caption: examples/jled_user_func.py
+    :linenos:
