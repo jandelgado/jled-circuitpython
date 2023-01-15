@@ -60,7 +60,7 @@ jobs:
     - name: Set up Python 3.x
       uses: actions/setup-python@v2
       with:
-        python-version: "3.x"
+        python-version: "3.9"
     - name: Checkout Current Repo
       uses: actions/checkout@v3
     - name: Build documentation
@@ -68,6 +68,8 @@ jobs:
         pip install ".[optional]"
         cd docs
         sphinx-build -E -W   -b html . _build/html
+        ls -lR _build/html
+
     - name: Upload documentation
       uses: peaceiris/actions-gh-pages@v3
       with:
