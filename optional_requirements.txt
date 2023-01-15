@@ -1,7 +1,7 @@
 # build and development time dependencies
-pytest
-pytest-cov
+pytest==7.*
+pytest-cov==4.*
 mpremote
 mpy-cross
-sphinx
-sphinx_rtd_theme
+sphinx==5.*
+sphinx_rtd_theme==1.*
