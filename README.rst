@@ -85,32 +85,16 @@ To install in a virtual environment in your current project:
     source .env/bin/activate
     pip3 install circuitpython-jled
 
-Installing to a Connected CircuitPython Device
-----------------------------------------------
-
-Create a directory called ``jled`` on the device and copy the following files
-into this directory: ``jled.py``, ``jled_sequence.py``
-``hal_pwm_circtuitpython.py``, ``hal_time_circuitpython.py``, ``play.py``,
-``__init__.py```. Optionally also copy the ``jled_micropython.py`` example as
-``main.py`` to the root of the filesystem.  The overall structure is:
-
-.. code-block::
-
-   /
-   ├─ main.py
-   └─ jled
-       ├─ __init__.py
-       ├─ hal_pwm_circuitpython.py
-       ├─ hal_time_circuitpython.py
-       ├─ jled.py
-       ├─ jled_sequence.py
-       └─ play.py
-
-
 Installing to a Connected CircuitPython Device with Circup
 ----------------------------------------------------------
 
-TODO
+``JLed`` is available in the `Circuitpython Community Bundle <https://github.com/adafruit/CircuitPython_Community_Bundle>`_ 
+and can easily installed with `circup <https://pypi.org/project/circup/>`_ by 
+running::
+
+    $ circup install jled
+
+Optionally copy also one of the example as ``main.py`` to the root of the filesystem. 
 
 Installing on a MicroPython device
 ----------------------------------
@@ -127,17 +111,17 @@ root of the filesystem.  The overall structure is:
    /
    ├─ main.py
    └─ jled
-       ├─ __init__.py
-       ├─ hal_pwm_micropython.py
-       ├─ hal_time_micropython.py
-       ├─ jled.py
-       ├─ jled_sequence.py
-       └─ play.py
+       ├─ __init__.[m]mpy
+       ├─ hal_pwm_micropython.[m]mpy
+       ├─ hal_time_micropython.[m]mpy
+       ├─ jled.[m]mpy
+       ├─ jled_sequence.[m]mpy
+       └─ play.[m]mpy
 
 To reduce memory consumption, Python source files can be compiled to binary
 ``mpy`` format using the `mpy-cross <https://pypi.org/project/mpy-cross/>`_
 tool. For convenience, a script to compile and copy jled to a connected device
-is provided here (see ``scripts/install_mp.sh``.
+is provided here (see ``scripts/install_mp.sh``).
 
 Documentation
 =============
