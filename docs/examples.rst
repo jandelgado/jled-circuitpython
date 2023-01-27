@@ -38,3 +38,10 @@ User defined Effect
 .. literalinclude:: ../examples/jled_user_func.py
     :caption: examples/jled_user_func.py
     :linenos:
+
+Magnetometer Usage
+-------------------
+
+.. literalinclude:: ../examples/jled_magnetometer.py
+    :caption: examples/jled_magnetometer.py
+    :linenos:
