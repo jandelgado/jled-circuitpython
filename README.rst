@@ -94,7 +94,7 @@ running::
 
     $ circup install jled
 
-Optionally copy also one of the example as ``main.py`` to the root of the filesystem. 
+Optionally copy also one of the example as ``code.py`` to the root of the filesystem. 
 
 Installing on a MicroPython device
 ----------------------------------
@@ -111,12 +111,12 @@ root of the filesystem.  The overall structure is:
    /
    ├─ main.py
    └─ jled
-       ├─ __init__.[m]mpy
-       ├─ hal_pwm_micropython.[m]mpy
-       ├─ hal_time_micropython.[m]mpy
-       ├─ jled.[m]mpy
-       ├─ jled_sequence.[m]mpy
-       └─ play.[m]mpy
+       ├─ __init__.[m]py
+       ├─ hal_pwm_micropython.[m]py
+       ├─ hal_time_micropython.[m]py
+       ├─ jled.[m]py
+       ├─ jled_sequence.[m]py
+       └─ play.[m]py
 
 To reduce memory consumption, Python source files can be compiled to binary
 ``mpy`` format using the `mpy-cross <https://pypi.org/project/mpy-cross/>`_
