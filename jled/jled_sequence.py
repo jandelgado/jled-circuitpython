@@ -153,6 +153,7 @@ class JLedSequence:
 
         :return: this JLedSequence object
         """
+        self._is_running = False
         for led in self._leds:
             led.stop()
         return self

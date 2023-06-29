@@ -120,6 +120,16 @@ def test_jledsequence_accepts_recursive_sequence():
     assert not seq2.is_running
 
 
+def test_jledsequence_stays_off_after_stop():
+    fx = MockEffect([255, 255])
+    led = JLed(1).user_func(fx)
+    seq = JLedSequence.parallel([led]).forever()
+
+    assert seq.update()
+    seq.stop()
+    assert not seq.update()
+    assert not seq.is_running
+
 def test_jledsequence_stop_stops_all_leds():
     fx = MockEffect([255, 255])
     led = JLed(1).user_func(fx)
