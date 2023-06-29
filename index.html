@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction &mdash; JLed CircuitPython and MicroPython Library 1.0 documentation</title>
@@ -29,14 +29,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> JLed CircuitPython and MicroPython Library
+
+          
+          
+          <a href="#" class="icon icon-home">
+            JLed CircuitPython and MicroPython Library
           </a>
               <div class="version">
                 1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -75,7 +79,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a></li>
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Introduction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
@@ -157,7 +161,7 @@ running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ circup install jled
 </pre></div>
 </div>
-<p>Optionally copy also one of the example as <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the root of the filesystem.</p>
+<p>Optionally copy also one of the example as <code class="docutils literal notranslate"><span class="pre">code.py</span></code> to the root of the filesystem.</p>
 </section>
 <section id="installing-on-a-micropython-device">
 <h2>Installing on a MicroPython device<a class="headerlink" href="#installing-on-a-micropython-device" title="Permalink to this heading">¶</a></h2>
@@ -169,12 +173,12 @@ root of the filesystem.  The overall structure is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/
 ├─ main.py
 └─ jled
-    ├─ __init__.[m]mpy
-    ├─ hal_pwm_micropython.[m]mpy
-    ├─ hal_time_micropython.[m]mpy
-    ├─ jled.[m]mpy
-    ├─ jled_sequence.[m]mpy
-    └─ play.[m]mpy
+    ├─ __init__.[m]py
+    ├─ hal_pwm_micropython.[m]py
+    ├─ hal_time_micropython.[m]py
+    ├─ jled.[m]py
+    ├─ jled_sequence.[m]py
+    └─ play.[m]py
 </pre></div>
 </div>
 <p>To reduce memory consumption, Python source files can be compiled to binary

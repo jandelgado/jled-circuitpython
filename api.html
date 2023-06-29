@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>jled &mdash; JLed CircuitPython and MicroPython Library 1.0 documentation</title>
@@ -29,14 +29,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> JLed CircuitPython and MicroPython Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            JLed CircuitPython and MicroPython Library
           </a>
               <div class="version">
                 1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -116,7 +120,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">jled</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
@@ -136,7 +140,7 @@
 <p>construct a new JLed object connected to the given pin, or using
 the provided hal object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pin</strong> – the pin to connect the JLed object to</p></li>
 <li><p><strong>hal</strong> – the HAL object to use</p></li>
@@ -154,13 +158,13 @@ by providing the pin the LED is connected to.</p>
 <dd><p>In blink mode, the LED cycles through a given number of on-off
 cycles. On- and Off-cycle durations are specified independently.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>duration_on</strong> – time in ms to turn the LED on</p></li>
 <li><p><strong>duration_off</strong> – time in ms to turn the LED off</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -174,7 +178,7 @@ PWM. The <code class="docutils literal notranslate"><span class="pre">breathe</s
 argument, however it is also possible to specify fade-on, on- and
 fade-off durations for the breathing mode to customize the effect.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>duration_fade_on</strong> – if only this parameter is set, then duration_fade_on
 specifies the time in ms of a full breathe period. If also duration_on
@@ -183,7 +187,7 @@ and duration_off are set, this parameter specifies the fade-on time only.</p></l
 <li><p><strong>duration_off</strong> – if set, specifies fade-off time</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -195,7 +199,7 @@ and duration_off are set, this parameter specifies the fade-on time only.</p></l
 <dd><p>In candle mode, the random flickering of a candle or fire is simulated.
 The idea was taken from <a class="reference external" href="https://cpldcpu.wordpress.com/2013/12/08/hacking-a-candleflicker-led/">here</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>speed</strong> – controls the speed of the effect. 0 for fastest,
 increasing speed divides into halve per increment.
@@ -212,7 +216,7 @@ maximum. Default value is 15.</p></li>
 <p>The default settings simulate a candle. For a fire effect for
 example use call the method with e.g. <code class="docutils literal notranslate"><span class="pre">speed=5</span></code> and <code class="docutils literal notranslate"><span class="pre">jitter=100</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -230,10 +234,10 @@ example use call the method with e.g. <code class="docutils literal notranslate"
 <dd><p>Use the <code class="docutils literal notranslate"><span class="pre">delay_after</span></code> method to specify a delay after each
 repetition of an effect. The default value is 0 ms.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>time</strong> – delay time in milliseconds</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -245,10 +249,10 @@ repetition of an effect. The default value is 0 ms.</p>
 <dd><p>Use the <code class="docutils literal notranslate"><span class="pre">delay_before</span></code> method to specify a delay before the first
 effect starts.  The default value is 0 ms.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>time</strong> – delay time in milliseconds</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -262,14 +266,14 @@ any target value <code class="docutils literal notranslate"><span class="pre">en
 <a class="reference internal" href="#jled.JLed.fade" title="jled.JLed.fade"><code class="xref py py-func docutils literal notranslate"><span class="pre">fade()</span></code></a> or <a class="reference internal" href="#jled.JLed.fade_off" title="jled.JLed.fade_off"><code class="xref py py-func docutils literal notranslate"><span class="pre">fade_off()</span></code></a> effect and <a class="reference internal" href="#jled.JLed.min_brightness" title="jled.JLed.min_brightness"><code class="xref py py-func docutils literal notranslate"><span class="pre">min_brightness()</span></code></a> and
 <a class="reference internal" href="#jled.JLed.max_brightness" title="jled.JLed.max_brightness"><code class="xref py py-func docutils literal notranslate"><span class="pre">max_brightness()</span></code></a> values properly.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>start</strong> – start brightness values</p></li>
 <li><p><strong>end</strong> – end brightness value</p></li>
 <li><p><strong>period</strong> – period of the effect</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -283,10 +287,10 @@ starts at 100% brightness. Internally it is implemented as a mirrored
 version of the <a class="reference internal" href="#jled.JLed.fade_on" title="jled.JLed.fade_on"><code class="xref py py-func docutils literal notranslate"><span class="pre">fade_on()</span></code></a> function, i.e.
 <code class="docutils literal notranslate"><span class="pre">fade_off(t)</span> <span class="pre">=</span> <span class="pre">fade_on(period-t)</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>period</strong> – period of the effect</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -301,10 +305,10 @@ argument.</p>
 <p>The brightness function uses an <a class="reference external" href="https://www.wolframalpha.com/input/?i=plot+(exp(sin((t-1000%2F2.)*PI%2F1000))-0.36787944)*108.0++t%3D0+to+1000">approximation of this function (example with
 period 1000</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>period</strong> – period of the effect</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -315,7 +319,7 @@ period 1000</a>.</p>
 <span class="sig-name descname"><span class="pre">forever</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.forever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.forever" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set effect to run forever.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -325,7 +329,7 @@ period 1000</a>.</p>
 <dt class="sig sig-object py" id="jled.JLed.is_forever">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_forever</span></span><a class="headerlink" href="#jled.JLed.is_forever" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if effect is set to run forever, otherwise False.</p>
 </dd>
 </dl>
@@ -335,7 +339,7 @@ period 1000</a>.</p>
 <dt class="sig sig-object py" id="jled.JLed.is_running">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_running</span></span><a class="headerlink" href="#jled.JLed.is_running" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if the effect is running, otherwise False.</p>
 </dd>
 </dl>
@@ -361,7 +365,7 @@ within the interval defined by <code class="docutils literal notranslate"><span 
 value of 0 will be mapped to the minimum brightness level, a value of 255 will
 be mapped to the maximum brightness level.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -372,7 +376,7 @@ be mapped to the maximum brightness level.</p>
 <span class="sig-name descname"><span class="pre">min_brightness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.min_brightness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.min_brightness" title="Permalink to this definition">¶</a></dt>
 <dd><p>See <a class="reference internal" href="#jled.JLed.max_brightness" title="jled.JLed.max_brightness"><code class="xref py py-func docutils literal notranslate"><span class="pre">max_brightness()</span></code></a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -384,11 +388,11 @@ be mapped to the maximum brightness level.</p>
 <dd><p>The <code class="docutils literal notranslate"><span class="pre">off</span></code> method works like <a class="reference internal" href="#jled.JLed.on" title="jled.JLed.on"><code class="xref py py-func docutils literal notranslate"><span class="pre">on()</span></code></a>, except that it
 turns the LED off, i.e. it sets the brightness to 0.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>period</strong> – period of the effect. Period will be relevant when
 multiple JLed objects are controlled by a JLedSequence</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -403,11 +407,11 @@ remember to also call <a class="reference internal" href="#jled.JLed.update" tit
 to 1ms. <code class="docutils literal notranslate"><span class="pre">on</span></code> basically calls <a class="reference internal" href="#jled.JLed.set" title="jled.JLed.set"><code class="xref py py-func docutils literal notranslate"><span class="pre">set()</span></code></a> with brightness
 set to 255.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>period</strong> – period of the effect. Period will be relevant when
 multiple JLed objects are controlled by a JLedSequence</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -422,10 +426,10 @@ sets to repeat the effect forever. Each repetition includes a full
 period of the effect and the time specified by
 <a class="reference internal" href="#jled.JLed.delay_after" title="jled.JLed.delay_after"><code class="xref py py-func docutils literal notranslate"><span class="pre">delay_after()</span></code></a> method.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>num</strong> – number of repetitions</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -443,14 +447,14 @@ Use it when you want to start-over an effect.</p>
 <span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brightness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use the <code class="docutils literal notranslate"><span class="pre">set</span></code> method to set the brightness to the given value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>brightness</strong> – brightness (0..255) to set</p></li>
 <li><p><strong>period</strong> – period of the effect. Period will be relevant when
 multiple JLed objects are controlled by a JLedSequence</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -464,7 +468,7 @@ effects.  Further calls to <a class="reference internal" href="#jled.JLed.update
 effect unless the <a class="reference internal" href="#jled.JLed.reset" title="jled.JLed.reset"><code class="xref py py-func docutils literal notranslate"><span class="pre">reset()</span></code></a> method is called or a new
 effect is activated.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -475,7 +479,7 @@ effect is activated.</p>
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled.html#JLed.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLed.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call <code class="docutils literal notranslate"><span class="pre">update</span></code> periodically to update the LED.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if the effect is active, otherwise False, when finished.</p>
 </dd>
 </dl>
@@ -521,7 +525,7 @@ an unsigned byte , where 0 means LED off and 255 means full brightness.
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLed instance</p>
 </dd>
 </dl>
@@ -549,7 +553,7 @@ can be either a <code class="docutils literal notranslate"><span class="pre">JLe
 <p>For convenience, two additional functions are provided:
 <a class="reference internal" href="#jled.JLedSequence.parallel" title="jled.JLedSequence.parallel"><code class="xref py py-func docutils literal notranslate"><span class="pre">parallel()</span></code></a> and <a class="reference internal" href="#jled.JLedSequence.sequential" title="jled.JLedSequence.sequential"><code class="xref py py-func docutils literal notranslate"><span class="pre">sequential()</span></code></a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mode</strong> – one of <code class="docutils literal notranslate"><span class="pre">JLedSequence.PARALLEL</span></code> or <code class="docutils literal notranslate"><span class="pre">JLedSequence.SEQUENTIAL</span></code></p></li>
 <li><p><strong>leds</strong> – list of effects to control</p></li>
@@ -561,7 +565,7 @@ can be either a <code class="docutils literal notranslate"><span class="pre">JLe
 <span class="sig-name descname"><span class="pre">forever</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.forever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.forever" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set this <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> to run forever.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLedSequence object</p>
 </dd>
 </dl>
@@ -571,7 +575,7 @@ can be either a <code class="docutils literal notranslate"><span class="pre">JLe
 <dt class="sig sig-object py" id="jled.JLedSequence.is_forever">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_forever</span></span><a class="headerlink" href="#jled.JLedSequence.is_forever" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if this <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> is set to run
 <a class="reference internal" href="#jled.JLedSequence.forever" title="jled.JLedSequence.forever"><code class="xref py py-func docutils literal notranslate"><span class="pre">forever()</span></code></a>, otherwise False</p>
 </dd>
@@ -582,7 +586,7 @@ can be either a <code class="docutils literal notranslate"><span class="pre">JLe
 <dt class="sig sig-object py" id="jled.JLedSequence.is_running">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_running</span></span><a class="headerlink" href="#jled.JLedSequence.is_running" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> is running, otherwise False.</p>
 </dd>
 </dl>
@@ -594,10 +598,10 @@ can be either a <code class="docutils literal notranslate"><span class="pre">JLe
 <dd><p>Initialize a JLedSequence to play given effects in parallel. This is
 a convenience method for calling <code class="docutils literal notranslate"><span class="pre">JLedSequence(JLedSequence.PARALLEL,</span> <span class="pre">leds)</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>leds</strong> – list of effects to play</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>a new JLedSequence object</p>
 </dd>
 </dl>
@@ -609,10 +613,10 @@ a convenience method for calling <code class="docutils literal notranslate"><spa
 <dd><p>Use the <code class="docutils literal notranslate"><span class="pre">repeat</span></code> method to specify the number of repetitions. The
 default value is 1 repetition.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>num</strong> – number of repetitions</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>this JLedSequence object</p>
 </dd>
 </dl>
@@ -625,7 +629,7 @@ default value is 1 repetition.</p>
 JLedSequence itself. Calling update afterwards will start all all LEDs
 over.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLedSequence object</p>
 </dd>
 </dl>
@@ -637,10 +641,10 @@ over.</p>
 <dd><p>Initialize a JLedSequence to play given effects sequentially. This is
 a convenience method for calling <code class="docutils literal notranslate"><span class="pre">JLedSequence(JLedSequence.SEQUENTIAL,</span> <span class="pre">leds)</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>leds</strong> – list of effects to play</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>a new JLedSequence object</p>
 </dd>
 </dl>
@@ -652,7 +656,7 @@ a convenience method for calling <code class="docutils literal notranslate"><spa
 <dd><p>Turns off all objects controlled by this <code class="docutils literal notranslate"><span class="pre">JLedSequence</span></code> and stops
 the sequence. Further calls to <a class="reference internal" href="#jled.JLedSequence.update" title="jled.JLedSequence.update"><code class="xref py py-func docutils literal notranslate"><span class="pre">update()</span></code></a> will have no effect.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>this JLedSequence object</p>
 </dd>
 </dl>
@@ -663,7 +667,7 @@ the sequence. Further calls to <a class="reference internal" href="#jled.JLedSeq
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/jled/jled_sequence.html#JLedSequence.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jled.JLedSequence.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call update periodically to play the effects/LEDs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if the effect is still running, otherwise False</p>
 </dd>
 </dl>
@@ -688,7 +692,7 @@ exploring JLed in the Python REPL.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>leds</strong> – list of effects to “play”</p></li>
 <li><p><strong>seq</strong> – set to True to play effects sequentially. When False (default),
