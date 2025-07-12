@@ -14,15 +14,15 @@ jobs:
   unittest:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v5
       with:
-        python-version: "3.9"
+        python-version: "3.x"
     - name: Versions
       run: |
         python3 --version
     - name: Checkout Current Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Run tests
       run: |
         pip install ".[optional]"
@@ -40,18 +40,18 @@ jobs:
         tr '_' '-'
         )
     - name: Set up Python 3.x
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.x"
     - name: Versions
       run: |
         python3 --version
     - name: Checkout Current Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: true
     - name: Checkout tools repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: adafruit/actions-ci-circuitpython-libs
         path: actions-ci
@@ -72,7 +72,7 @@ jobs:
     - name: Build assets
       run: circuitpython-build-bundles --filename_prefix ${{ steps.repo-name.outputs.repo-name }} --package_folder_prefix "" --library_location .
     - name: Archive bundles
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: bundles
         path: ${{ github.workspace }}/bundles/
