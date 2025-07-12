@@ -21,7 +21,7 @@
 # following via commandline, replacing "path/to/your/" with the actual path to your newly created
 # .gitignore_global file:
 # git config --global core.excludesfile path/to/your/.gitignore_global
-
+uv.lock
 .coverage
 .direnv
 .envrc

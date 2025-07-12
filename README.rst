@@ -101,10 +101,10 @@ Installing on a MicroPython device
 
 Create a directory called ``jled`` on the device and `copy
 <https://pypi.org/project/mpremote/>`_ the following files into this directory:
-into this directory: ``jled.py``, ``jled_sequence.py``
-``hal_pwm_micropython.py``, ``hal_time_micropython.py``, ``play.py``,
-``__init__.py```. Optionally also copy one of the example as ``main.py`` to the
-root of the filesystem.  The overall structure is:
+``jled.py``, ``jled_sequence.py`` ``hal_pwm_micropython.py``,
+``hal_time_micropython.py``, ``play.py``, ``__init__.py```. Optionally also copy 
+one of the example as ``main.py`` to the root of the filesystem.  The overall
+structure is:
 
 .. code-block::
 

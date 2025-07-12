@@ -81,22 +81,26 @@ class _BlinkBrightnessEval:
 
 
 class _BreatheBrightnessEval:
-    def __init__(self, duration_fade_on, duration_on, duration_fade_off):
+    def __init__(self, duration_fade_on, duration_on, duration_fade_off,
+                 from_=0, to=FULL_BRIGHTNESS):
         self._duration_fade_on = duration_fade_on
         self._duration_on = duration_on
         self._duration_fade_off = duration_fade_off
+        self._from = from_
+        self._to = to
 
     def period(self):
         return self._duration_fade_on + self._duration_on + self._duration_fade_off
 
     def eval(self, t):
+        val = 0
         if t < self._duration_fade_on:
-            return fadeon_func(t, self._duration_fade_on)
-        if t < self._duration_fade_on + self._duration_on:
-            return FULL_BRIGHTNESS
-        if t < self.period():
-            return fadeon_func(self.period() - t, self._duration_fade_off)
-        return ZERO_BRIGHTNESS
+            val = fadeon_func(t, self._duration_fade_on)
+        elif t < self._duration_fade_on + self._duration_on:
+            val = FULL_BRIGHTNESS
+        else:
+            val = fadeon_func(self.period() - t, self._duration_fade_off)
+        return lerp8by8(val, self._from, self._to)
 
 
 class _CandleBrightnessEval:
@@ -224,7 +228,7 @@ class JLed:
         """
         return self._set_brightness_eval(_ConstantBrightnessEval(brightness, period))
 
-    def fade_on(self, period):
+    def fade_on(self, period, from_ = 0, to = FULL_BRIGHTNESS):
         """In fade_on mode, the LED is smoothly faded on to 100% brightness
         using PWM. The ``fade_on`` method takes the period of the effect as an
         argument.
@@ -237,9 +241,9 @@ class JLed:
 
         :return: this JLed instance
         """
-        return self._set_brightness_eval(_BreatheBrightnessEval(period, 0, 0))
+        return self._set_brightness_eval(_BreatheBrightnessEval(period, 0, 0, from_, to))
 
-    def fade_off(self, period):
+    def fade_off(self, period, from_ = FULL_BRIGHTNESS, to = 0):
         """In fade_off mode, the LED is smoothly faded off using PWM. The fade
         starts at 100% brightness. Internally it is implemented as a mirrored
         version of the :func:`fade_on` function, i.e.
@@ -249,7 +253,7 @@ class JLed:
 
         :return: this JLed instance
         """
-        return self._set_brightness_eval(_BreatheBrightnessEval(0, 0, period))
+        return self._set_brightness_eval(_BreatheBrightnessEval(0, 0, period, from_, to))
 
     def fade(self, start, end, period):
         """The fade effect allows to fade from any start value ``start`` to
@@ -264,8 +268,8 @@ class JLed:
         :return: this JLed instance
         """
         if start < end:
-            return self.fade_on(period).min_brightness(start).max_brightness(end)
-        return self.fade_off(period).min_brightness(end).max_brightness(start)
+            return self.fade_on(period, start, end)
+        return self.fade_off(period, start, end)
 
     def breathe(self, duration_fade_on, duration_on=None, duration_fade_off=None):
         """In breathing mode, the LED smoothly changes the brightness using
