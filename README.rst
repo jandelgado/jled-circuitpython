@@ -88,13 +88,13 @@ To install in a virtual environment in your current project:
 Installing to a Connected CircuitPython Device with Circup
 ----------------------------------------------------------
 
-``JLed`` is available in the `Circuitpython Community Bundle <https://github.com/adafruit/CircuitPython_Community_Bundle>`_ 
-and can easily installed with `circup <https://pypi.org/project/circup/>`_ by 
+``JLed`` is available in the `Circuitpython Community Bundle <https://github.com/adafruit/CircuitPython_Community_Bundle>`_
+and can easily installed with `circup <https://pypi.org/project/circup/>`_ by
 running::
 
     $ circup install jled
 
-Optionally copy also one of the example as ``code.py`` to the root of the filesystem. 
+Optionally copy also one of the example as ``code.py`` to the root of the filesystem.
 
 Installing on a MicroPython device
 ----------------------------------
@@ -102,7 +102,7 @@ Installing on a MicroPython device
 Create a directory called ``jled`` on the device and `copy
 <https://pypi.org/project/mpremote/>`_ the following files into this directory:
 ``jled.py``, ``jled_sequence.py`` ``hal_pwm_micropython.py``,
-``hal_time_micropython.py``, ``play.py``, ``__init__.py```. Optionally also copy 
+``hal_time_micropython.py``, ``play.py``, ``__init__.py```. Optionally also copy
 one of the example as ``main.py`` to the root of the filesystem.  The overall
 structure is:
 
@@ -144,6 +144,20 @@ Unit tests (using https://docs.pytest.org) are provided, run the tests with:
    $ pytest
 
 To run the ``pre-commit-hook`` locally, run ``pre-commit run --all-files``
+
+Tip
+===
+
+Instead of installing the various tools like ``circup``, ``mp-remote``,
+``mpy-cross`` etc. you can easily run the tools using `uv
+<https://docs.astral.sh/uv/>`:
+
+- ``uv tool run circup list``, ``uv tool run circup update --all``
+- ``uv tool run mpremote`` to start a REPL on the micro controller
+- ``uv tool run --with pytest-cov pytest`` to run the unit tests
+- ``uv tool run --from sphinx sphinx-build -E -W -b html . build/html`` to build
+  the documentation using sphinx (run inside ``docs/``)
+
 
 Author & Copyright
 ==================
