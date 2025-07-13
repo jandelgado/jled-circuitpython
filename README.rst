@@ -149,8 +149,7 @@ Tip
 ===
 
 Instead of installing the various tools like ``circup``, ``mp-remote``,
-``mpy-cross`` etc. you can easily run the tools using `uv
-<https://docs.astral.sh/uv/>`:
+``mpy-cross`` etc. you can easily run the tools using `uv <https://docs.astral.sh/uv/>`_:
 
 - ``uv tool run circup list``, ``uv tool run circup update --all``
 - ``uv tool run mpremote`` to start a REPL on the micro controller
