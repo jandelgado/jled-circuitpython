@@ -1,14 +1,10 @@
 import sys
 import types
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
 
 
 # provide mocked mocked version of machine.PWM and machine.Pin to
 # be used during the tests
-# pylint: disable=too-few-public-methods
 class MockPin:
     def __init__(self, num):
         self._num = num

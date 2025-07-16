@@ -14,7 +14,6 @@ HAL example for MicoPython and the ESP32
 
 """
 
-# pylint: disable=no-member
 import time
 
 
