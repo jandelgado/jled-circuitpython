@@ -22,7 +22,7 @@ module_name = "pwmio"
 module = types.ModuleType(module_name)
 sys.modules[module_name] = module
 
-from jled.hal_time_circuitpython import CircuitPythonTimeHAL as HAL
+from jled.hal_time_circuitpython import CircuitPythonTimeHAL as HAL  # noqa: E402
 
 # from jled.hal_time_circuitpython import _TICKS_PERIOD as TICKS_PERIOD
 
