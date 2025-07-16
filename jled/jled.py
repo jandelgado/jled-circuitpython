@@ -81,22 +81,32 @@ class _BlinkBrightnessEval:
 
 
 class _BreatheBrightnessEval:
-    def __init__(self, duration_fade_on, duration_on, duration_fade_off):
+    def __init__(
+        self,
+        duration_fade_on,
+        duration_on,
+        duration_fade_off,
+        start=0,
+        end=FULL_BRIGHTNESS,
+    ):
         self._duration_fade_on = duration_fade_on
         self._duration_on = duration_on
         self._duration_fade_off = duration_fade_off
+        self._start = start
+        self._end = end
 
     def period(self):
         return self._duration_fade_on + self._duration_on + self._duration_fade_off
 
     def eval(self, t):
+        val = 0
         if t < self._duration_fade_on:
-            return fadeon_func(t, self._duration_fade_on)
-        if t < self._duration_fade_on + self._duration_on:
-            return FULL_BRIGHTNESS
-        if t < self.period():
-            return fadeon_func(self.period() - t, self._duration_fade_off)
-        return ZERO_BRIGHTNESS
+            val = fadeon_func(t, self._duration_fade_on)
+        elif t < self._duration_fade_on + self._duration_on:
+            val = FULL_BRIGHTNESS
+        else:
+            val = fadeon_func(self.period() - t, self._duration_fade_off)
+        return lerp8by8(val, self._start, self._end)
 
 
 class _CandleBrightnessEval:
@@ -224,7 +234,7 @@ class JLed:
         """
         return self._set_brightness_eval(_ConstantBrightnessEval(brightness, period))
 
-    def fade_on(self, period):
+    def fade_on(self, period, start=0, end=FULL_BRIGHTNESS):
         """In fade_on mode, the LED is smoothly faded on to 100% brightness
         using PWM. The ``fade_on`` method takes the period of the effect as an
         argument.
@@ -234,38 +244,44 @@ class JLed:
         <https://www.wolframalpha.com/input/?i=plot+(exp(sin((t-1000%2F2.)*PI%2F1000))-0.36787944)*108.0++t%3D0+to+1000>`_.
 
         :param period: period of the effect
+        :param: start: start brightness
+        :param: end: end brightness
 
         :return: this JLed instance
         """
-        return self._set_brightness_eval(_BreatheBrightnessEval(period, 0, 0))
+        return self._set_brightness_eval(
+            _BreatheBrightnessEval(period, 0, 0, start, end)
+        )
 
-    def fade_off(self, period):
+    def fade_off(self, period, start=FULL_BRIGHTNESS, end=0):
         """In fade_off mode, the LED is smoothly faded off using PWM. The fade
         starts at 100% brightness. Internally it is implemented as a mirrored
         version of the :func:`fade_on` function, i.e.
         ``fade_off(t) = fade_on(period-t)``.
 
         :param period: period of the effect
+        :param: start: start brightness
+        :param: end: end brightness
 
         :return: this JLed instance
         """
-        return self._set_brightness_eval(_BreatheBrightnessEval(0, 0, period))
+        return self._set_brightness_eval(
+            _BreatheBrightnessEval(0, 0, period, start, end)
+        )
 
     def fade(self, start, end, period):
         """The fade effect allows to fade from any start value ``start`` to
-        any target value ``end`` with the given period. Internally it sets up a
-        :func:`fade` or :func:`fade_off` effect and :func:`min_brightness` and
-        :func:`max_brightness` values properly.
+        any target value ``end`` with the given period.
 
-        :param start: start brightness values
-        :param end: end brightness value
+        :param start: start brightness
+        :param end: end brightness
         :param period: period of the effect
 
         :return: this JLed instance
         """
         if start < end:
-            return self.fade_on(period).min_brightness(start).max_brightness(end)
-        return self.fade_off(period).min_brightness(end).max_brightness(start)
+            return self.fade_on(period, start, end)
+        return self.fade_off(period, start, end)
 
     def breathe(self, duration_fade_on, duration_on=None, duration_fade_off=None):
         """In breathing mode, the LED smoothly changes the brightness using
