@@ -5,6 +5,7 @@ import types
 # pylint: disable=misplaced-comparison-constant
 # pylint: disable=invalid-name
 
+
 # provide mocked mocked version of machine.PWM and machine.Pin to
 # be used during the tests
 class MockPWMOut:
@@ -32,8 +33,7 @@ module = types.ModuleType(module_name)
 module.PWMOut = MockPWMOut
 sys.modules[module_name] = module
 
-# pylint: disable=wrong-import-position
-from jled.hal_pwm_circuitpython import CircuitPythonPWMHAL
+from jled.hal_pwm_circuitpython import CircuitPythonPWMHAL  # noqa: E402
 
 
 def test_circuitpython_hal_initializes_pwmout_corretly():

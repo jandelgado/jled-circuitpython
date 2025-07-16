@@ -12,6 +12,7 @@ A pure python port of JLed (https://github.com/jandelgado/jled)
 * Author(s): Jan Delgado
 
 """
+
 from .jled_sequence import JLedSequence
 
 
