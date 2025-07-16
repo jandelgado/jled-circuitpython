@@ -30,7 +30,7 @@ for file in $SOURCES; do
     mpy-cross "$file"
 done
 
-# prepare local directory which will be uploaded 
+# prepare local directory which will be uploaded
 SRC=$(mktemp -d)
 trap "rm -rf $SRC" EXIT
 mkdir $SRC/jled
@@ -44,4 +44,3 @@ done
 cp $MAIN_SOURCE $SRC/main.py
 
 cd $SRC && ${MPREMOTE} cp -r . :
-

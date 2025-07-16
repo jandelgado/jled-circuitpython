@@ -1,13 +1,10 @@
 import sys
 import types
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
+
 
 # provide mocked mocked version of machine.PWM and machine.Pin to
 # be used during the tests
-# pylint: disable=too-few-public-methods
 class MockPin:
     def __init__(self, num):
         self._num = num
@@ -34,8 +31,7 @@ module.PWM = MockPWM
 module.Pin = MockPin
 sys.modules[module_name] = module
 
-# pylint: disable=wrong-import-position
-from jled.hal_pwm_micropython import MicroPythonPWMHAL, _scale8to16
+from jled.hal_pwm_micropython import MicroPythonPWMHAL, _scale8to16  # noqa: E402
 
 
 def test_scale8to16_preserves_min_max_relationships():

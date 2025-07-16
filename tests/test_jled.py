@@ -1,8 +1,5 @@
 # run tests with pytest --cov=jled tests/
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
 
 import pytest
 
@@ -263,35 +260,51 @@ def test_breathe_with_custom_params_sets_breathe_brightness_eval():
     led = JLed(1).breathe(100, 200, 300)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
     assert (
-        _BreatheBrightnessEval(100, 200, 300, 0, 255).__dict__ == led._brightness_eval.__dict__
+        _BreatheBrightnessEval(100, 200, 300, 0, 255).__dict__
+        == led._brightness_eval.__dict__
     )
 
 
 def test_breathe_sets_breathe_brightness_eval():
     led = JLed(1).breathe(100)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
-    assert _BreatheBrightnessEval(50, 0, 50, 0, 255).__dict__ == led._brightness_eval.__dict__
+    assert (
+        _BreatheBrightnessEval(50, 0, 50, 0, 255).__dict__
+        == led._brightness_eval.__dict__
+    )
 
 
 def test_fadeon_sets_breathe_brightness_eval():
     led = JLed(1).fade_on(100)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
-    assert _BreatheBrightnessEval(100, 0, 0, 0, 255).__dict__ == led._brightness_eval.__dict__
+    assert (
+        _BreatheBrightnessEval(100, 0, 0, 0, 255).__dict__
+        == led._brightness_eval.__dict__
+    )
 
 
 def test_fadeoff_sets_breathe_brightness_eval():
     led = JLed(1).fade_off(100)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
-    assert _BreatheBrightnessEval(0, 0, 100, 255, 0).__dict__ == led._brightness_eval.__dict__
+    assert (
+        _BreatheBrightnessEval(0, 0, 100, 255, 0).__dict__
+        == led._brightness_eval.__dict__
+    )
 
 
 def test_fade_from_low_to_high_sets_breathe_brightness_eval_and_brightness():
     led = JLed(1).fade(start=100, end=200, period=300)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
-    assert _BreatheBrightnessEval(300, 0, 0, 100, 200).__dict__ == led._brightness_eval.__dict__
+    assert (
+        _BreatheBrightnessEval(300, 0, 0, 100, 200).__dict__
+        == led._brightness_eval.__dict__
+    )
 
 
 def test_fade_from_high_to_low_sets_breathe_brightness_eval_and_brightness():
     led = JLed(1).fade(start=200, end=100, period=300)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
-    assert _BreatheBrightnessEval(0, 0, 300, 200, 100).__dict__ == led._brightness_eval.__dict__
+    assert (
+        _BreatheBrightnessEval(0, 0, 300, 200, 100).__dict__
+        == led._brightness_eval.__dict__
+    )

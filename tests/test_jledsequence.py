@@ -1,8 +1,5 @@
 # run tests with pytest --cov=jled tests/
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
 
 import pytest
 from jled.jled import JLed
@@ -129,6 +126,7 @@ def test_jledsequence_stays_off_after_stop():
     seq.stop()
     assert not seq.update()
     assert not seq.is_running
+
 
 def test_jledsequence_stop_stops_all_leds():
     fx = MockEffect([255, 255])

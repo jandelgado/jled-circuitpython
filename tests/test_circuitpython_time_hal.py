@@ -1,10 +1,6 @@
 import sys
 import types
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
-# pylint: disable=wrong-import-position
 
 # provide mocked suppervisor.tick_ms and micropython.const modules/functions
 # to our test runs with cpython
@@ -22,7 +18,7 @@ module_name = "pwmio"
 module = types.ModuleType(module_name)
 sys.modules[module_name] = module
 
-from jled.hal_time_circuitpython import CircuitPythonTimeHAL as HAL
+from jled.hal_time_circuitpython import CircuitPythonTimeHAL as HAL  # noqa: E402
 
 # from jled.hal_time_circuitpython import _TICKS_PERIOD as TICKS_PERIOD
 

@@ -3,9 +3,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
 
 import pytest
 from jled.jled import fadeon_func
@@ -23,6 +20,5 @@ from jled.jled import fadeon_func
         (10000, 255),
     ],
 )
-# pylint: disable=invalid-name
 def test_fadeon_func_calculates_expected_curve_for_period_2000(t, expected):
     assert fadeon_func(t, 2000) == expected
