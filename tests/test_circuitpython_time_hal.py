@@ -1,10 +1,6 @@
 import sys
 import types
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
-# pylint: disable=wrong-import-position
 
 # provide mocked suppervisor.tick_ms and micropython.const modules/functions
 # to our test runs with cpython

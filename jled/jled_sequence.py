@@ -84,7 +84,6 @@ class JLedSequence:
     def _update_parallel(self, t):
         result = False
         for led in self._leds:
-            # pylint: disable=protected-access
             result |= led._update(t)  # considered "friend class"
         return result
 
@@ -92,7 +91,6 @@ class JLedSequence:
         n = len(self._leds)
         if self._cur >= n:
             return False
-        # pylint: disable=protected-access
         if not self._leds[self._cur]._update(t):
             self._cur += 1
             return self._cur < n
@@ -131,7 +129,7 @@ class JLedSequence:
         if not self._is_running:
             return False
 
-        t = JLed._TIME_HAL.millis()  # pylint: disable=protected-access
+        t = JLed._TIME_HAL.millis()
         return self._update(t)
 
     def reset(self):

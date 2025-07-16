@@ -1,14 +1,10 @@
 # run tests with pytest --cov=jled tests/
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
 
 from jled.play import play
 
 
 def test_play_calls_update_until_done():
-    # pylint: disable=too-few-public-methods
     class MockLed:
         def __init__(self, countdown):
             self.countdown = countdown

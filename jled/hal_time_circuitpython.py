@@ -18,7 +18,6 @@ from supervisor import ticks_ms
 from micropython import const
 
 # don't change values
-# pylint: disable=undefined-variable
 _TICKS_PERIOD = const(1 << 29)  # must be power of 2
 _TICKS_MAX = const(_TICKS_PERIOD - 1)
 _TICKS_HALFPERIOD = const(_TICKS_PERIOD // 2)
@@ -29,7 +28,6 @@ class CircuitPythonTimeHAL:
 
     @staticmethod
     def millis():
-        # pylint: disable=line-too-long
         """return current time in milliseconds
 
         see  https://docs.circuitpython.org/en/latest/shared-bindings/supervisor/index.html#supervisor.ticks_ms:
