@@ -2,7 +2,6 @@ import sys
 import types
 
 
-
 # provide mocked mocked version of machine.PWM and machine.Pin to
 # be used during the tests
 class MockPin:

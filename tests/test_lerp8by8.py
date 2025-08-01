@@ -3,7 +3,6 @@ import pytest
 from jled.jled import lerp8by8
 
 
-
 @pytest.mark.parametrize(
     "val,a,b,expected",
     [

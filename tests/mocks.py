@@ -1,7 +1,6 @@
 # run tests with pytest --cov=jled tests/
 
 
-
 class MockPWMHAL:
     def __init__(self, pin):
         self._pin = pin
