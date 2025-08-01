@@ -91,7 +91,7 @@
            <div itemprop="articleBody">
              
   <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
 <a class="reference external image-reference" href="https://github.com/jandelgado/jled-circuitpython/actions"><img alt="Build Status" src="https://github.com/jandelgado/jled-circuitpython/workflows/Build%20CI/badge.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/psf/black"><img alt="Code Style: Black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
 <a class="reference external image-reference" href="https://jandelgado.github.io/jled-circuitpython"><img alt="API Documentation" src="https://img.shields.io/badge/-API%20documentation-brightgreen" /></a>
@@ -103,7 +103,7 @@ C++ library.</p>
 <img alt="JLed in action" src="_images/jled.gif" />
 </section>
 <section id="features">
-<h1>Features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h1>
+<h1>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>non-blocking</p></li>
 <li><p>effects: simple on/off, breathe, blink, candle, fade, user-defined</p></li>
@@ -114,11 +114,11 @@ C++ library.</p>
 </ul>
 </section>
 <section id="usage-example">
-<h1>Usage Example<a class="headerlink" href="#usage-example" title="Permalink to this heading">¶</a></h1>
+<h1>Usage Example<a class="headerlink" href="#usage-example" title="Permalink to this heading"></a></h1>
 <p>Test JLed interactively in a CircuitPython REPL:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Adafruit</span> <span class="n">CircuitPython</span> <span class="mf">7.3.3</span> <span class="n">on</span> <span class="mi">2022</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">29</span><span class="p">;</span> <span class="n">Raspberry</span> <span class="n">Pi</span> <span class="n">Pico</span> <span class="k">with</span> <span class="n">rp2040</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">board</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">board</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">jled</span><span class="w"> </span><span class="kn">import</span> <span class="n">JLed</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">led</span><span class="o">=</span><span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="n">led</span><span class="o">.</span><span class="n">update</span><span class="p">():</span> <span class="k">pass</span>
 </pre></div>
@@ -131,11 +131,11 @@ REPL as a shortcut.  Once finished, call <code class="docutils literal notransla
 effect again.</p>
 </section>
 <section id="cheat-sheet">
-<h1>Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permalink to this heading">¶</a></h1>
+<h1>Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permalink to this heading"></a></h1>
 <img alt="_images/jled_cheat_sheet.jpg" src="_images/jled_cheat_sheet.jpg" />
 </section>
 <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <p>On supported GNU/Linux systems like the Raspberry Pi (with <a class="reference external" href="https://pypi.org/project/Adafruit-Blinka/">Adafruit-Blinka</a>), you can install the lib
 locally <a class="reference external" href="https://pypi.org/project/circuitpython-jled/">from PyPI</a>.  To
 install for current user:</p>
@@ -154,7 +154,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>circuitpython-jled
 </pre></div>
 </div>
 <section id="installing-to-a-connected-circuitpython-device-with-circup">
-<h2>Installing to a Connected CircuitPython Device with Circup<a class="headerlink" href="#installing-to-a-connected-circuitpython-device-with-circup" title="Permalink to this heading">¶</a></h2>
+<h2>Installing to a Connected CircuitPython Device with Circup<a class="headerlink" href="#installing-to-a-connected-circuitpython-device-with-circup" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">JLed</span></code> is available in the <a class="reference external" href="https://github.com/adafruit/CircuitPython_Community_Bundle">Circuitpython Community Bundle</a>
 and can easily installed with <a class="reference external" href="https://pypi.org/project/circup/">circup</a> by
 running:</p>
@@ -164,12 +164,12 @@ running:</p>
 <p>Optionally copy also one of the example as <code class="docutils literal notranslate"><span class="pre">code.py</span></code> to the root of the filesystem.</p>
 </section>
 <section id="installing-on-a-micropython-device">
-<h2>Installing on a MicroPython device<a class="headerlink" href="#installing-on-a-micropython-device" title="Permalink to this heading">¶</a></h2>
+<h2>Installing on a MicroPython device<a class="headerlink" href="#installing-on-a-micropython-device" title="Permalink to this heading"></a></h2>
 <p>Create a directory called <code class="docutils literal notranslate"><span class="pre">jled</span></code> on the device and <a class="reference external" href="https://pypi.org/project/mpremote/">copy</a> the following files into this directory:
-into this directory: <code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">jled_sequence.py</span></code>
-<code class="docutils literal notranslate"><span class="pre">hal_pwm_micropython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">hal_time_micropython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">play.py</span></code>,
-<code class="docutils literal notranslate"><span class="pre">__init__.py`</span></code>. Optionally also copy one of the example as <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the
-root of the filesystem.  The overall structure is:</p>
+<code class="docutils literal notranslate"><span class="pre">jled.py</span></code>, <code class="docutils literal notranslate"><span class="pre">jled_sequence.py</span></code> <code class="docutils literal notranslate"><span class="pre">hal_pwm_micropython.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">hal_time_micropython.py</span></code>, <code class="docutils literal notranslate"><span class="pre">play.py</span></code>, <code class="docutils literal notranslate"><span class="pre">__init__.py`</span></code>. Optionally also copy
+one of the example as <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the root of the filesystem.  The overall
+structure is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/
 ├─ main.py
 └─ jled
@@ -188,14 +188,14 @@ is provided here (see <code class="docutils literal notranslate"><span class="pr
 </section>
 </section>
 <section id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h1>
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://jandelgado.github.io/jled-circuitpython/">API documentation for this library can be found on here</a>.</p>
 <p>Rebuild the documentation with <code class="docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-E</span> <span class="pre">-W</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">.</span> <span class="pre">_build/html</span></code>
 in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory. Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;.[optional]&quot;</span></code> before to install
 build-time dependency <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a></p>
 </section>
 <section id="tests">
-<h1>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h1>
+<h1>Tests<a class="headerlink" href="#tests" title="Permalink to this heading"></a></h1>
 <p>Unit tests (using <a class="reference external" href="https://docs.pytest.org">https://docs.pytest.org</a>) are provided, run the tests with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install &quot;.[optional]&quot;
 $ pytest
@@ -203,12 +203,24 @@ $ pytest
 </div>
 <p>To run the <code class="docutils literal notranslate"><span class="pre">pre-commit-hook</span></code> locally, run <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span> <span class="pre">--all-files</span></code></p>
 </section>
+<section id="tip">
+<h1>Tip<a class="headerlink" href="#tip" title="Permalink to this heading"></a></h1>
+<p>Instead of installing the various tools like <code class="docutils literal notranslate"><span class="pre">circup</span></code>, <code class="docutils literal notranslate"><span class="pre">mp-remote</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mpy-cross</span></code> etc. you can easily run the tools using <a class="reference external" href="https://docs.astral.sh/uv/">uv</a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span> <span class="pre">run</span> <span class="pre">circup</span> <span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span> <span class="pre">run</span> <span class="pre">circup</span> <span class="pre">update</span> <span class="pre">--all</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span> <span class="pre">run</span> <span class="pre">mpremote</span></code> to start a REPL on the micro controller</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span> <span class="pre">run</span> <span class="pre">--with</span> <span class="pre">pytest-cov</span> <span class="pre">pytest</span></code> to run the unit tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">tool</span> <span class="pre">run</span> <span class="pre">--from</span> <span class="pre">sphinx</span> <span class="pre">sphinx-build</span> <span class="pre">-E</span> <span class="pre">-W</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">.</span> <span class="pre">build/html</span></code> to build
+the documentation using sphinx (run inside <code class="docutils literal notranslate"><span class="pre">docs/</span></code>)</p></li>
+</ul>
+</section>
 <section id="author-copyright">
-<h1>Author &amp; Copyright<a class="headerlink" href="#author-copyright" title="Permalink to this heading">¶</a></h1>
+<h1>Author &amp; Copyright<a class="headerlink" href="#author-copyright" title="Permalink to this heading"></a></h1>
 <p>Copyright © 2022-2023 by Jan Delgado, License: MIT</p>
 </section>
 <section id="table-of-contents">
-<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h1>
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -276,7 +288,7 @@ $ pytest
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -294,7 +306,7 @@ $ pytest
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 - 2023 Jan Delgado.</p>
+    <p>&#169; Copyright 2022 - 2025 Jan Delgado.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

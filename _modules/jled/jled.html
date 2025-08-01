@@ -104,7 +104,7 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
 <span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.0.0+auto.0&quot;</span>
 <span class="n">__repo__</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/jandelgado/jled-circuitpython.git&quot;</span>
@@ -113,12 +113,12 @@
 <span class="n">ZERO_BRIGHTNESS</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="k">def</span> <span class="nf">scale8</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">scale8</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;scale a byte by a byte&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">factor</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span>
 
 
-<span class="k">def</span> <span class="nf">lerp8by8</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">lerp8by8</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;interpolate val to the interval defined by [a,b]. Returns a if val==0</span>
 <span class="sd">    and b if val==255 or a value in [a,b]&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">255</span><span class="p">:</span>
@@ -126,7 +126,7 @@
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">scale8</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">fadeon_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fadeon_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
     <span class="c1"># pylint: disable=line-too-long</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The fade-on func is an approximation of</span>
 <span class="sd">    y(x) = exp(sin((t-period/2.) * PI / period)) - 0.36787944) * 108.), using</span>
@@ -147,63 +147,73 @@
     <span class="k">return</span> <span class="p">(((</span><span class="n">t</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">y0</span>
 
 
-<span class="k">class</span> <span class="nc">_ConstantBrightnessEval</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_ConstantBrightnessEval</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_val</span> <span class="o">=</span> <span class="n">val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duration</span> <span class="o">=</span> <span class="n">duration</span>
 
-    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration</span>
 
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_val</span>
 
 
-<span class="k">class</span> <span class="nc">_BlinkBrightnessEval</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration_on</span><span class="p">,</span> <span class="n">duration_off</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_BlinkBrightnessEval</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration_on</span><span class="p">,</span> <span class="n">duration_off</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duration_on</span> <span class="o">=</span> <span class="n">duration_on</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duration_off</span> <span class="o">=</span> <span class="n">duration_off</span>
 
-    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_on</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_off</span>
 
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">FULL_BRIGHTNESS</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_on</span> <span class="k">else</span> <span class="n">ZERO_BRIGHTNESS</span>
 
 
-<span class="k">class</span> <span class="nc">_BreatheBrightnessEval</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration_fade_on</span><span class="p">,</span> <span class="n">duration_on</span><span class="p">,</span> <span class="n">duration_fade_off</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_BreatheBrightnessEval</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">duration_fade_on</span><span class="p">,</span>
+        <span class="n">duration_on</span><span class="p">,</span>
+        <span class="n">duration_fade_off</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">end</span><span class="o">=</span><span class="n">FULL_BRIGHTNESS</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_on</span> <span class="o">=</span> <span class="n">duration_fade_on</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duration_on</span> <span class="o">=</span> <span class="n">duration_on</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_off</span> <span class="o">=</span> <span class="n">duration_fade_off</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end</span> <span class="o">=</span> <span class="n">end</span>
 
-    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_on</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_on</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_off</span>
 
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_on</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">fadeon_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_on</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_on</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_on</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">FULL_BRIGHTNESS</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">fadeon_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_off</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ZERO_BRIGHTNESS</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">fadeon_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_on</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_on</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_on</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">FULL_BRIGHTNESS</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">fadeon_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration_fade_off</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lerp8by8</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_CandleBrightnessEval</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_CandleBrightnessEval</span><span class="p">:</span>
     <span class="n">_CANDLE_TABLE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">jitter</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">jitter</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">=</span> <span class="n">speed</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_jitter</span> <span class="o">=</span> <span class="n">jitter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">=</span> <span class="n">period</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last</span> <span class="o">=</span> <span class="mi">5</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_t</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span>
 
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_t</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span>
@@ -217,7 +227,7 @@
 
 
 <span class="c1"># pylint: disable=too-many-public-methods</span>
-<div class="viewcode-block" id="JLed"><a class="viewcode-back" href="../../api.html#jled.JLed">[docs]</a><span class="k">class</span> <span class="nc">JLed</span><span class="p">:</span>
+<div class="viewcode-block" id="JLed"><a class="viewcode-back" href="../../api.html#jled.JLed">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">JLed</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;JLed class&quot;&quot;&quot;</span>
 
     <span class="n">_REPEAT_FOREVER</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -232,7 +242,7 @@
     <span class="n">_DEFAULT_PWM_HAL</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_TIME_HAL</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hal</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hal</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        construct a new JLed object connected to the given pin, or using</span>
 <span class="sd">        the provided hal object.</span>
@@ -263,7 +273,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_delay_after</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_brightness_eval</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="JLed.reset"><a class="viewcode-back" href="../../api.html#jled.JLed.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.reset"><a class="viewcode-back" href="../../api.html#jled.JLed.reset">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;A call to ``reset`` brings the JLed object to its initial state.</span>
 <span class="sd">        Use it when you want to start-over an effect.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_time_start</span> <span class="o">=</span> <span class="mi">0</span>
@@ -271,7 +281,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">JLed</span><span class="o">.</span><span class="n">_ST_INIT</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLed.low_active"><a class="viewcode-back" href="../../api.html#jled.JLed.low_active">[docs]</a>    <span class="k">def</span> <span class="nf">low_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.low_active"><a class="viewcode-back" href="../../api.html#jled.JLed.low_active">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">low_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use the ``low_active`` method when the connected LED is low active.</span>
 <span class="sd">        All output will be inverted by JLed (i.e. instead of x, the value of</span>
 <span class="sd">        255-x will be set).&quot;&quot;&quot;</span>
@@ -279,7 +289,7 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="c1"># pylint: disable=invalid-name</span>
-<div class="viewcode-block" id="JLed.on"><a class="viewcode-back" href="../../api.html#jled.JLed.on">[docs]</a>    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.on"><a class="viewcode-back" href="../../api.html#jled.JLed.on">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calling ``on`` turns the LED on. To immediately turn a LED on,</span>
 <span class="sd">        remember to also call :func:`update` like in</span>
 <span class="sd">        ``JLed(board.LED).on().update()``. The ``period`` is optional and defaults</span>
@@ -293,7 +303,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">FULL_BRIGHTNESS</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.off"><a class="viewcode-back" href="../../api.html#jled.JLed.off">[docs]</a>    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.off"><a class="viewcode-back" href="../../api.html#jled.JLed.off">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The ``off`` method works like :func:`on`, except that it</span>
 <span class="sd">        turns the LED off, i.e. it sets the brightness to 0.</span>
 
@@ -304,7 +314,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ZERO_BRIGHTNESS</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.set"><a class="viewcode-back" href="../../api.html#jled.JLed.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brightness</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.set"><a class="viewcode-back" href="../../api.html#jled.JLed.set">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brightness</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use the ``set`` method to set the brightness to the given value.</span>
 
 <span class="sd">        :param brightness: brightness (0..255) to set</span>
@@ -315,7 +325,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_brightness_eval</span><span class="p">(</span><span class="n">_ConstantBrightnessEval</span><span class="p">(</span><span class="n">brightness</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="JLed.fade_on"><a class="viewcode-back" href="../../api.html#jled.JLed.fade_on">[docs]</a>    <span class="k">def</span> <span class="nf">fade_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.fade_on"><a class="viewcode-back" href="../../api.html#jled.JLed.fade_on">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">fade_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">FULL_BRIGHTNESS</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;In fade_on mode, the LED is smoothly faded on to 100% brightness</span>
 <span class="sd">        using PWM. The ``fade_on`` method takes the period of the effect as an</span>
 <span class="sd">        argument.</span>
@@ -325,40 +335,46 @@
 <span class="sd">        &lt;https://www.wolframalpha.com/input/?i=plot+(exp(sin((t-1000%2F2.)*PI%2F1000))-0.36787944)*108.0++t%3D0+to+1000&gt;`_.</span>
 
 <span class="sd">        :param period: period of the effect</span>
+<span class="sd">        :param: start: start brightness</span>
+<span class="sd">        :param: end: end brightness</span>
 
 <span class="sd">        :return: this JLed instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_brightness_eval</span><span class="p">(</span><span class="n">_BreatheBrightnessEval</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_brightness_eval</span><span class="p">(</span>
+            <span class="n">_BreatheBrightnessEval</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.fade_off"><a class="viewcode-back" href="../../api.html#jled.JLed.fade_off">[docs]</a>    <span class="k">def</span> <span class="nf">fade_off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.fade_off"><a class="viewcode-back" href="../../api.html#jled.JLed.fade_off">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">fade_off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">FULL_BRIGHTNESS</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;In fade_off mode, the LED is smoothly faded off using PWM. The fade</span>
 <span class="sd">        starts at 100% brightness. Internally it is implemented as a mirrored</span>
 <span class="sd">        version of the :func:`fade_on` function, i.e.</span>
 <span class="sd">        ``fade_off(t) = fade_on(period-t)``.</span>
 
 <span class="sd">        :param period: period of the effect</span>
+<span class="sd">        :param: start: start brightness</span>
+<span class="sd">        :param: end: end brightness</span>
 
 <span class="sd">        :return: this JLed instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_brightness_eval</span><span class="p">(</span><span class="n">_BreatheBrightnessEval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_brightness_eval</span><span class="p">(</span>
+            <span class="n">_BreatheBrightnessEval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.fade"><a class="viewcode-back" href="../../api.html#jled.JLed.fade">[docs]</a>    <span class="k">def</span> <span class="nf">fade</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.fade"><a class="viewcode-back" href="../../api.html#jled.JLed.fade">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">fade</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The fade effect allows to fade from any start value ``start`` to</span>
-<span class="sd">        any target value ``end`` with the given period. Internally it sets up a</span>
-<span class="sd">        :func:`fade` or :func:`fade_off` effect and :func:`min_brightness` and</span>
-<span class="sd">        :func:`max_brightness` values properly.</span>
+<span class="sd">        any target value ``end`` with the given period.</span>
 
-<span class="sd">        :param start: start brightness values</span>
-<span class="sd">        :param end: end brightness value</span>
+<span class="sd">        :param start: start brightness</span>
+<span class="sd">        :param end: end brightness</span>
 <span class="sd">        :param period: period of the effect</span>
 
 <span class="sd">        :return: this JLed instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fade_on</span><span class="p">(</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">min_brightness</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="o">.</span><span class="n">max_brightness</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fade_off</span><span class="p">(</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">min_brightness</span><span class="p">(</span><span class="n">end</span><span class="p">)</span><span class="o">.</span><span class="n">max_brightness</span><span class="p">(</span><span class="n">start</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fade_on</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fade_off</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.breathe"><a class="viewcode-back" href="../../api.html#jled.JLed.breathe">[docs]</a>    <span class="k">def</span> <span class="nf">breathe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration_fade_on</span><span class="p">,</span> <span class="n">duration_on</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration_fade_off</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.breathe"><a class="viewcode-back" href="../../api.html#jled.JLed.breathe">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">breathe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration_fade_on</span><span class="p">,</span> <span class="n">duration_on</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration_fade_off</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;In breathing mode, the LED smoothly changes the brightness using</span>
 <span class="sd">        PWM. The ``breathe`` method takes the period of the effect as an</span>
 <span class="sd">        argument, however it is also possible to specify fade-on, on- and</span>
@@ -381,7 +397,7 @@
             <span class="n">_BreatheBrightnessEval</span><span class="p">(</span><span class="n">duration_fade_on</span><span class="p">,</span> <span class="n">duration_on</span><span class="p">,</span> <span class="n">duration_fade_off</span><span class="p">)</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.blink"><a class="viewcode-back" href="../../api.html#jled.JLed.blink">[docs]</a>    <span class="k">def</span> <span class="nf">blink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration_on</span><span class="p">,</span> <span class="n">duration_off</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.blink"><a class="viewcode-back" href="../../api.html#jled.JLed.blink">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">blink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration_on</span><span class="p">,</span> <span class="n">duration_off</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;In blink mode, the LED cycles through a given number of on-off</span>
 <span class="sd">        cycles. On- and Off-cycle durations are specified independently.</span>
 
@@ -394,7 +410,7 @@
             <span class="n">_BlinkBrightnessEval</span><span class="p">(</span><span class="n">duration_on</span><span class="p">,</span> <span class="n">duration_off</span><span class="p">)</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.candle"><a class="viewcode-back" href="../../api.html#jled.JLed.candle">[docs]</a>    <span class="k">def</span> <span class="nf">candle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">jitter</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mh">0xFFFF</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.candle"><a class="viewcode-back" href="../../api.html#jled.JLed.candle">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">candle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">jitter</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mh">0xFFFF</span><span class="p">):</span>
         <span class="c1"># pylint: disable=line-too-long</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;In candle mode, the random flickering of a candle or fire is simulated.</span>
 <span class="sd">        The idea was taken from `here &lt;https://cpldcpu.wordpress.com/2013/12/08/hacking-a-candleflicker-led/&gt;`_</span>
@@ -413,7 +429,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_brightness_eval</span><span class="p">(</span><span class="n">_CandleBrightnessEval</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">jitter</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="JLed.user_func"><a class="viewcode-back" href="../../api.html#jled.JLed.user_func">[docs]</a>    <span class="k">def</span> <span class="nf">user_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_eval</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.user_func"><a class="viewcode-back" href="../../api.html#jled.JLed.user_func">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">user_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_eval</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;It is also possible to provide a user defined brightness evaluator.</span>
 <span class="sd">        The class must implement two methods:</span>
 
@@ -430,7 +446,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_brightness_eval</span><span class="p">(</span><span class="n">user_eval</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLed.forever"><a class="viewcode-back" href="../../api.html#jled.JLed.forever">[docs]</a>    <span class="k">def</span> <span class="nf">forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.forever"><a class="viewcode-back" href="../../api.html#jled.JLed.forever">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set effect to run forever.</span>
 
 <span class="sd">        :return: this JLed instance</span>
@@ -439,13 +455,13 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :return: True if effect is set to run forever, otherwise False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_repetitions</span> <span class="o">==</span> <span class="n">JLed</span><span class="o">.</span><span class="n">_REPEAT_FOREVER</span>
 
-<div class="viewcode-block" id="JLed.repeat"><a class="viewcode-back" href="../../api.html#jled.JLed.repeat">[docs]</a>    <span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.repeat"><a class="viewcode-back" href="../../api.html#jled.JLed.repeat">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">repeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use the ``repeat`` method to specify the number of repetitions. The</span>
 <span class="sd">        default value is 1 repetition. The :func:`forever` method</span>
 <span class="sd">        sets to repeat the effect forever. Each repetition includes a full</span>
@@ -459,7 +475,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_num_repetitions</span> <span class="o">=</span> <span class="n">num</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLed.delay_before"><a class="viewcode-back" href="../../api.html#jled.JLed.delay_before">[docs]</a>    <span class="k">def</span> <span class="nf">delay_before</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.delay_before"><a class="viewcode-back" href="../../api.html#jled.JLed.delay_before">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">delay_before</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use the ``delay_before`` method to specify a delay before the first</span>
 <span class="sd">        effect starts.  The default value is 0 ms.</span>
 
@@ -470,7 +486,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_delay_before</span> <span class="o">=</span> <span class="n">time</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLed.delay_after"><a class="viewcode-back" href="../../api.html#jled.JLed.delay_after">[docs]</a>    <span class="k">def</span> <span class="nf">delay_after</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.delay_after"><a class="viewcode-back" href="../../api.html#jled.JLed.delay_after">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">delay_after</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use the ``delay_after`` method to specify a delay after each</span>
 <span class="sd">        repetition of an effect. The default value is 0 ms.</span>
 
@@ -481,7 +497,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_delay_after</span> <span class="o">=</span> <span class="n">time</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLed.stop"><a class="viewcode-back" href="../../api.html#jled.JLed.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.stop"><a class="viewcode-back" href="../../api.html#jled.JLed.stop">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call ``stop`` to immediately turn the LED off and stop any running</span>
 <span class="sd">        effects.  Further calls to :func:`update` will have no</span>
 <span class="sd">        effect unless the :func:`reset` method is called or a new</span>
@@ -494,13 +510,13 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :return: True if the effect is running, otherwise False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">!=</span> <span class="n">JLed</span><span class="o">.</span><span class="n">_ST_STOPPED</span>
 
-<div class="viewcode-block" id="JLed.max_brightness"><a class="viewcode-back" href="../../api.html#jled.JLed.max_brightness">[docs]</a>    <span class="k">def</span> <span class="nf">max_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.max_brightness"><a class="viewcode-back" href="../../api.html#jled.JLed.max_brightness">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">max_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The ``max_brightness`` method is used to set the maximum brightness</span>
 <span class="sd">        level of the LED. A level of 255 (the default) is full brightness, while 0</span>
 <span class="sd">        effectively turns the LED off. In the same way, the ``min_brightness``</span>
@@ -514,7 +530,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_brightness</span> <span class="o">=</span> <span class="n">level</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLed.min_brightness"><a class="viewcode-back" href="../../api.html#jled.JLed.min_brightness">[docs]</a>    <span class="k">def</span> <span class="nf">min_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.min_brightness"><a class="viewcode-back" href="../../api.html#jled.JLed.min_brightness">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">min_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;See :func:`max_brightness`</span>
 
 <span class="sd">        :return: this JLed instance</span>
@@ -522,15 +538,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_min_brightness</span> <span class="o">=</span> <span class="n">level</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-    <span class="k">def</span> <span class="nf">_set_brightness_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_brightness_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_brightness_eval</span> <span class="o">=</span> <span class="n">evaluator</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
-<div class="viewcode-block" id="JLed.deinit"><a class="viewcode-back" href="../../api.html#jled.JLed.deinit">[docs]</a>    <span class="k">def</span> <span class="nf">deinit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.deinit"><a class="viewcode-back" href="../../api.html#jled.JLed.deinit">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">deinit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call ``deinit`` to free hardware resources used by this object&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hal</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="JLed.update"><a class="viewcode-back" href="../../api.html#jled.JLed.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLed.update"><a class="viewcode-back" href="../../api.html#jled.JLed.update">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call ``update`` periodically to update the LED.</span>
 
@@ -538,7 +554,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_TIME_HAL</span><span class="o">.</span><span class="n">millis</span><span class="p">())</span></div>
 
-    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">now</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">now</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="n">JLed</span><span class="o">.</span><span class="n">_ST_STOPPED</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_brightness_eval</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
@@ -579,7 +595,7 @@
 
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">_write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="n">val</span> <span class="o">=</span> <span class="n">lerp8by8</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min_brightness</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_brightness</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hal</span><span class="o">.</span><span class="n">analog_write</span><span class="p">(</span><span class="n">FULL_BRIGHTNESS</span> <span class="o">-</span> <span class="n">val</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_low_active</span> <span class="k">else</span> <span class="n">val</span><span class="p">)</span></div>
 </pre></div>
@@ -591,7 +607,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 - 2023 Jan Delgado.</p>
+    <p>&#169; Copyright 2022 - 2025 Jan Delgado.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

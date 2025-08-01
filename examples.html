@@ -92,18 +92,18 @@
            <div itemprop="articleBody">
              
   <section id="simple-test">
-<h1>Simple test<a class="headerlink" href="#simple-test" title="Permalink to this heading">¶</a></h1>
+<h1>Simple test<a class="headerlink" href="#simple-test" title="Permalink to this heading"></a></h1>
 <p>Ensure your device works with this simple test.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">examples/jled_simpletest.py</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">examples/jled_simpletest.py</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
 <span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 4</span><span class="sd">JLed Hello world</span>
 <span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
-<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 7</span><span class="kn">import</span><span class="w"> </span><span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">jled</span><span class="w"> </span><span class="kn">import</span> <span class="n">JLed</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="n">led</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
 <span class="linenos">11</span>
@@ -114,19 +114,19 @@
 </div>
 </section>
 <section id="pulse-effect-micropython">
-<h1>Pulse Effect (MicroPython)<a class="headerlink" href="#pulse-effect-micropython" title="Permalink to this heading">¶</a></h1>
+<h1>Pulse Effect (MicroPython)<a class="headerlink" href="#pulse-effect-micropython" title="Permalink to this heading"></a></h1>
 <p>This example targets a MicroPython device. The only difference to CircuitPython
-is, that on MicroPython there is no <a class="reference external" href="https://docs.circuitpython.org/en/latest/shared-bindings/board/index.html#module-board" title="(in Adafruit CircuitPython v8.2.0-rc.1)"><code class="xref any docutils literal notranslate"><span class="pre">board</span></code></a> package and therefore the pin are
+is, that on MicroPython there is no <a class="reference external" href="https://docs.circuitpython.org/en/latest/shared-bindings/board/index.html#module-board" title="(in Adafruit CircuitPython v1)"><code class="xref any docutils literal notranslate"><span class="pre">board</span></code></a> package and therefore the pin are
 addressed numerically.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">examples/jled_micropython.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">examples/jled_micropython.py</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
 <span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 4</span><span class="sd">JLead pulse effect example (micropython)</span>
 <span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 7</span><span class="kn">from</span><span class="w"> </span><span class="nn">jled</span><span class="w"> </span><span class="kn">import</span> <span class="n">JLed</span>
 <span class="linenos"> 8</span>
 <span class="linenos"> 9</span><span class="n">led1</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">min_brightness</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">delay_before</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
 <span class="linenos">10</span><span class="n">led2</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">min_brightness</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
@@ -139,17 +139,17 @@ addressed numerically.</p>
 </div>
 </section>
 <section id="breathing-led">
-<h1>Breathing LED<a class="headerlink" href="#breathing-led" title="Permalink to this heading">¶</a></h1>
+<h1>Breathing LED<a class="headerlink" href="#breathing-led" title="Permalink to this heading"></a></h1>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">examples/jled_breathe.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">examples/jled_breathe.py</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
 <span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 4</span><span class="sd">JLead breathe example</span>
 <span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
-<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 7</span><span class="kn">import</span><span class="w"> </span><span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">jled</span><span class="w"> </span><span class="kn">import</span> <span class="n">JLed</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="n">led</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
 <span class="linenos">11</span>
@@ -160,17 +160,17 @@ addressed numerically.</p>
 </div>
 </section>
 <section id="multiple-leds">
-<h1>Multiple LEDs<a class="headerlink" href="#multiple-leds" title="Permalink to this heading">¶</a></h1>
+<h1>Multiple LEDs<a class="headerlink" href="#multiple-leds" title="Permalink to this heading"></a></h1>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">examples/jled_sequece.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">examples/jled_sequece.py</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
 <span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 4</span><span class="sd">drive multiple LEDs using different effects with a JLedSequence</span>
 <span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
-<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span><span class="p">,</span> <span class="n">JLedSequence</span>
+<span class="linenos"> 7</span><span class="kn">import</span><span class="w"> </span><span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">jled</span><span class="w"> </span><span class="kn">import</span> <span class="n">JLed</span><span class="p">,</span> <span class="n">JLedSequence</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="n">led0</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">LED</span><span class="p">)</span><span class="o">.</span><span class="n">breathe</span><span class="p">(</span><span class="mi">750</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
 <span class="linenos">11</span><span class="n">led1</span> <span class="o">=</span> <span class="n">JLed</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">GP2</span><span class="p">)</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">delay_after</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">forever</span><span class="p">()</span>
@@ -186,29 +186,29 @@ addressed numerically.</p>
 </div>
 </section>
 <section id="user-defined-effect">
-<h1>User defined Effect<a class="headerlink" href="#user-defined-effect" title="Permalink to this heading">¶</a></h1>
+<h1>User defined Effect<a class="headerlink" href="#user-defined-effect" title="Permalink to this heading"></a></h1>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">examples/jled_user_func.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">examples/jled_user_func.py</span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># SPDX-FileCopyrightText: Copyright (c) 2022 Jan Delgado</span>
 <span class="linenos"> 2</span><span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 4</span><span class="sd">JLed User defined effect example</span>
 <span class="linenos"> 5</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">board</span>
-<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="linenos"> 7</span><span class="kn">import</span><span class="w"> </span><span class="nn">board</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">jled</span><span class="w"> </span><span class="kn">import</span> <span class="n">JLed</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>
-<span class="linenos">11</span><span class="k">class</span> <span class="nc">UserEffect</span><span class="p">:</span>
-<span class="linenos">12</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
+<span class="linenos">11</span><span class="k">class</span><span class="w"> </span><span class="nc">UserEffect</span><span class="p">:</span>
+<span class="linenos">12</span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
 <span class="linenos">13</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">=</span> <span class="n">period</span>
 <span class="linenos">14</span>
-<span class="linenos">15</span>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="linenos">15</span>    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
 <span class="linenos">16</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;this function returns changes between 0 and 255 and</span>
 <span class="linenos">17</span><span class="sd">        vice versa every period/2 ms&quot;&quot;&quot;</span>
 <span class="linenos">18</span>        <span class="k">return</span> <span class="mi">255</span> <span class="o">*</span> <span class="p">((</span><span class="n">t</span> <span class="o">//</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span>    <span class="k">def</span> <span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">20</span>    <span class="k">def</span><span class="w"> </span><span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="linenos">21</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span>
 <span class="linenos">22</span>
 <span class="linenos">23</span>
@@ -232,7 +232,7 @@ addressed numerically.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 - 2023 Jan Delgado.</p>
+    <p>&#169; Copyright 2022 - 2025 Jan Delgado.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

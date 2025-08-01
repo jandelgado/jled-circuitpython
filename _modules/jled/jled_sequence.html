@@ -104,10 +104,10 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">.jled</span> <span class="kn">import</span> <span class="n">JLed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.jled</span><span class="w"> </span><span class="kn">import</span> <span class="n">JLed</span>
 
 
-<div class="viewcode-block" id="JLedSequence"><a class="viewcode-back" href="../../api.html#jled.JLedSequence">[docs]</a><span class="k">class</span> <span class="nc">JLedSequence</span><span class="p">:</span>
+<div class="viewcode-block" id="JLedSequence"><a class="viewcode-back" href="../../api.html#jled.JLedSequence">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">JLedSequence</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The ``JLedSequence`` class allows controlling a group of effects</span>
 <span class="sd">    either in parallel or sequentially. An effect is either a :class:`~jled.jled.JLed`</span>
 <span class="sd">    object or a ``JLedSequence``.</span>
@@ -127,7 +127,7 @@
     <span class="n">SEQUENTIAL</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">_REPEAT_FOREVER</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">leds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">leds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct a JLedSequence for the given list of effects. An effect</span>
 <span class="sd">        can be either a ``JLed`` object, or another ``JLedSequence``.</span>
 
@@ -147,7 +147,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_running</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="JLedSequence.parallel"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.parallel">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">parallel</span><span class="p">(</span><span class="n">leds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parallel</span><span class="p">(</span><span class="n">leds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a JLedSequence to play given effects in parallel. This is</span>
 <span class="sd">        a convenience method for calling ``JLedSequence(JLedSequence.PARALLEL, leds)``.</span>
 
@@ -158,7 +158,7 @@
         <span class="k">return</span> <span class="n">JLedSequence</span><span class="p">(</span><span class="n">JLedSequence</span><span class="o">.</span><span class="n">PARALLEL</span><span class="p">,</span> <span class="n">leds</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="JLedSequence.sequential"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.sequential">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">sequential</span><span class="p">(</span><span class="n">leds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sequential</span><span class="p">(</span><span class="n">leds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a JLedSequence to play given effects sequentially. This is</span>
 <span class="sd">        a convenience method for calling ``JLedSequence(JLedSequence.SEQUENTIAL, leds)``.</span>
 
@@ -168,18 +168,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">JLedSequence</span><span class="p">(</span><span class="n">JLedSequence</span><span class="o">.</span><span class="n">SEQUENTIAL</span><span class="p">,</span> <span class="n">leds</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_reset_leds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_leds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">led</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_leds</span><span class="p">:</span>
             <span class="n">led</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_update_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">led</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_leds</span><span class="p">:</span>
             <span class="c1"># pylint: disable=protected-access</span>
             <span class="n">result</span> <span class="o">|=</span> <span class="n">led</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># considered &quot;friend class&quot;</span>
         <span class="k">return</span> <span class="n">result</span>
 
-    <span class="k">def</span> <span class="nf">_update_sequentially</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_sequentially</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_leds</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cur</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -189,7 +189,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cur</span> <span class="o">&lt;</span> <span class="n">n</span>
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
         <span class="c1">#  if self._mode == JLedSequence.PARALLEL:</span>
         <span class="c1">#      return self._update_parallel(t)</span>
         <span class="c1">#  return self._update_sequentially(t)</span>
@@ -213,7 +213,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_running</span> <span class="o">=</span> <span class="n">is_running</span>
         <span class="k">return</span> <span class="n">is_running</span>
 
-<div class="viewcode-block" id="JLedSequence.update"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLedSequence.update"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.update">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call update periodically to play the effects/LEDs.</span>
 
@@ -225,7 +225,7 @@
         <span class="n">t</span> <span class="o">=</span> <span class="n">JLed</span><span class="o">.</span><span class="n">_TIME_HAL</span><span class="o">.</span><span class="n">millis</span><span class="p">()</span>  <span class="c1"># pylint: disable=protected-access</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">t</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="JLedSequence.reset"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLedSequence.reset"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.reset">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset all LEDs controlled by this ``JLedSequence`` and the</span>
 <span class="sd">        JLedSequence itself. Calling update afterwards will start all all LEDs</span>
 <span class="sd">        over.</span>
@@ -238,7 +238,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_running</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLedSequence.stop"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLedSequence.stop"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.stop">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Turns off all objects controlled by this ``JLedSequence`` and stops</span>
 <span class="sd">        the sequence. Further calls to :func:`update` will have no effect.</span>
 
@@ -249,7 +249,7 @@
             <span class="n">led</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLedSequence.repeat"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.repeat">[docs]</a>    <span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+<div class="viewcode-block" id="JLedSequence.repeat"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.repeat">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">repeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use the ``repeat`` method to specify the number of repetitions. The</span>
 <span class="sd">        default value is 1 repetition.</span>
 
@@ -260,7 +260,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_num_repetitions</span> <span class="o">=</span> <span class="n">num</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="JLedSequence.forever"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.forever">[docs]</a>    <span class="k">def</span> <span class="nf">forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JLedSequence.forever"><a class="viewcode-back" href="../../api.html#jled.JLedSequence.forever">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set this ``JLedSequence`` to run forever.</span>
 
 <span class="sd">        :return: this JLedSequence object</span>
@@ -269,7 +269,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">JLedSequence</span><span class="o">.</span><span class="n">_REPEAT_FOREVER</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :return: True if this ``JLedSequence`` is set to run</span>
 <span class="sd">                 :func:`forever`, otherwise False</span>
@@ -277,7 +277,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_repetitions</span> <span class="o">==</span> <span class="n">JLedSequence</span><span class="o">.</span><span class="n">_REPEAT_FOREVER</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :return: True if ``JLedSequence`` is running, otherwise False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -291,7 +291,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 - 2023 Jan Delgado.</p>
+    <p>&#169; Copyright 2022 - 2025 Jan Delgado.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
