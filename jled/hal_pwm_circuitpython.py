@@ -21,12 +21,11 @@ class CircuitPythonPWMHAL:
     _leds = {}
 
     def __init__(self, pin, frequency=5000):
-
         self._pin = pin
         # PWM instances are shared among JLed instances to be able
         # to instanciate multiple JLed objects using the same PWM. We need
         # to use str(pin) as the key because pin might not be hashable
-        if not str(pin) in CircuitPythonPWMHAL._leds:
+        if str(pin) not in CircuitPythonPWMHAL._leds:
             led = pwmio.PWMOut(pin, frequency=frequency, duty_cycle=0)
             CircuitPythonPWMHAL._leds[str(pin)] = led
 

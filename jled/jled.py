@@ -36,7 +36,6 @@ def lerp8by8(val, a, b):
 
 
 def fadeon_func(t, period):
-    # pylint: disable=line-too-long
     """The fade-on func is an approximation of
     y(x) = exp(sin((t-period/2.) * PI / period)) - 0.36787944) * 108.), using
     pre-computed values and integers only.
@@ -135,7 +134,6 @@ class _CandleBrightnessEval:
         return self._last
 
 
-# pylint: disable=too-many-public-methods
 class JLed:
     """JLed class"""
 
@@ -169,7 +167,6 @@ class JLed:
         if not (pin is None) ^ (hal is None):
             raise ValueError("either pin or hal must be set")
 
-        # pylint: disable=not-callable
         self._hal = JLed._DEFAULT_PWM_HAL(pin) if hal is None else hal
         self._last_update_time = 0
         self._time_start = 0
@@ -197,7 +194,6 @@ class JLed:
         self._low_active = val
         return self
 
-    # pylint: disable=invalid-name
     def on(self, period=1):
         """Calling ``on`` turns the LED on. To immediately turn a LED on,
         remember to also call :func:`update` like in
@@ -320,7 +316,6 @@ class JLed:
         )
 
     def candle(self, speed=6, jitter=15, period=0xFFFF):
-        # pylint: disable=line-too-long
         """In candle mode, the random flickering of a candle or fire is simulated.
         The idea was taken from `here <https://cpldcpu.wordpress.com/2013/12/08/hacking-a-candleflicker-led/>`_
 

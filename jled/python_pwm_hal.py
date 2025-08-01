@@ -12,8 +12,6 @@ A pure python port of https://github.com/jandelgado/jled
 
 """
 
-import time
-
 
 class PythonPWMHAL:
     """a JLed PWM HAL for Phyton for debugging and testing"""

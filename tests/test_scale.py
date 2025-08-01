@@ -3,9 +3,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
 
 import pytest
 from jled.jled import scale8

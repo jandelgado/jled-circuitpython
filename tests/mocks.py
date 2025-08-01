@@ -1,9 +1,5 @@
 # run tests with pytest --cov=jled tests/
 
-# pylint: disable=protected-access
-# pylint: disable=misplaced-comparison-constant
-# pylint: disable=invalid-name
-
 
 class MockPWMHAL:
     def __init__(self, pin):
