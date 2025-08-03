@@ -30,16 +30,7 @@ module.PWM = MockPWM
 module.Pin = MockPin
 sys.modules[module_name] = module
 
-from jled.hal_pwm_micropython import MicroPythonPWMHAL, _scale8to16  # noqa: E402
-
-
-def test_scale8to16_preserves_min_max_relationships():
-    assert 0 == _scale8to16(0)
-    assert 0xFFFF == _scale8to16(0xFF)
-
-
-def test_scale8to16_scales():
-    assert 0x10FF == _scale8to16(0x10)
+from jled.hal_pwm_micropython import MicroPythonPWMHAL  # noqa: E402
 
 
 def test_micropython_hal_initializes_corretly():
@@ -53,13 +44,13 @@ def test_micropython_hal_hal_initializes_right_pin():
     assert 123 == hal._pwm._pin._num
 
 
-def test_micropython_hal_writes_scaled_value():
+def test_micropython_hal_writes_given_value():
     hal = MicroPythonPWMHAL(123)
 
     hal.analog_write(0)
     assert 0 == hal._pwm._val
 
-    hal.analog_write(255)
+    hal.analog_write(0xFFFF)
     assert 0xFFFF == hal._pwm._val
 
 

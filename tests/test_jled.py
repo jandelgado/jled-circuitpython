@@ -3,7 +3,7 @@
 
 import pytest
 
-from jled.jled import JLed
+from jled.jled import FULL_BRIGHTNESS, JLed
 from jled.jled import _ConstantBrightnessEval
 from jled.jled import _BlinkBrightnessEval
 from jled.jled import _BreatheBrightnessEval
@@ -24,8 +24,8 @@ def test_blink_brightness_eval_blinks_in_given_times():
     fx = _BlinkBrightnessEval(10, 20)
 
     assert 30 == fx.period()
-    assert 255 == fx.eval(0)
-    assert 255 == fx.eval(9)
+    assert FULL_BRIGHTNESS == fx.eval(0)
+    assert FULL_BRIGHTNESS == fx.eval(9)
     assert 0 == fx.eval(10)
     assert 0 == fx.eval(19)
 
@@ -36,10 +36,11 @@ def test_breathe_brightness_evalulates_curve():
     assert 10 + 20 + 30 == fx.period()
     assert 0 == fx.eval(0)
     assert 0 < fx.eval(9)
-    assert 255 == fx.eval(10)
-    assert 255 == fx.eval(30)
+    assert FULL_BRIGHTNESS == fx.eval(10)
+    assert FULL_BRIGHTNESS == fx.eval(30)
     assert 0 < fx.eval(31)
-    assert 0 == fx.eval(59)
+    assert 198 == fx.eval(59)
+    assert 0 == fx.eval(60)
 
 
 def test_candle_brightness_evalulater():
@@ -72,7 +73,23 @@ def test_write_value_to_hal():
 def test_write_value_to_hal_is_inverted_on_low_active_led():
     led = JLed(1).low_active()
     led._write(0)
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
+
+
+def test_output_is_scaled_according_to_min():
+    fx = MockEffect([0])
+    led = JLed(1).user_func(fx).min_brightness(100)
+
+    led.update()
+    assert 100 == led._hal.val
+
+
+def test_output_is_scaled_according_to_max():
+    fx = MockEffect([FULL_BRIGHTNESS])
+    led = JLed(1).user_func(fx).max_brightness(1000)
+
+    led.update()
+    assert 1000 == led._hal.val
 
 
 def test_update_returns_false_if_no_effect_is_set():
@@ -109,11 +126,11 @@ def test_update_writes_values_of_effect():
 
 def test_update_returns_true_as_long_as_effect_is_active():
     t = JLed._TIME_HAL.reset()
-    fx = MockEffect([255, 0])
+    fx = MockEffect([FULL_BRIGHTNESS, 0])
     led = JLed(1).user_func(fx)
 
     assert led.update()
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
 
     t.tick()
     assert not led.update()
@@ -122,7 +139,7 @@ def test_update_returns_true_as_long_as_effect_is_active():
 
 def test_delay_before_delays_effect_start():
     t = JLed._TIME_HAL.reset()
-    fx = MockEffect([255])
+    fx = MockEffect([FULL_BRIGHTNESS])
     led = JLed(1).user_func(fx).delay_before(1)
 
     assert led.update()
@@ -130,35 +147,35 @@ def test_delay_before_delays_effect_start():
 
     t.tick()
     assert not led.update()
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
 
 
 def test_delay_after_delays_effect_end():
     t = JLed._TIME_HAL.reset()
-    fx = MockEffect([255])
+    fx = MockEffect([FULL_BRIGHTNESS])
     led = JLed(1).user_func(fx).delay_after(1)
 
     assert led.update()
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
 
     t.tick()
     assert not led.update()
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
 
 
 def test_repeat_effect_multiple_times():
     t = JLed._TIME_HAL.reset()
-    fx = MockEffect([255, 0])
+    fx = MockEffect([FULL_BRIGHTNESS, 0])
     led = JLed(1).user_func(fx).repeat(2)
 
     assert led.update()
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
     t.tick()
     assert led.update()
     assert 0 == led._hal.val
     t.tick()
     assert led.update()
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
     t.tick()
     assert not led.update()
     assert 0 == led._hal.val
@@ -166,12 +183,12 @@ def test_repeat_effect_multiple_times():
 
 def test_forever_runs_effect_multiple_times():
     t = JLed._TIME_HAL.reset()
-    fx = MockEffect([255, 0])
+    fx = MockEffect([FULL_BRIGHTNESS, 0])
     led = JLed(1).user_func(fx).forever()
 
     for _ in range(100):
         assert led.update()
-        assert 255 == led._hal.val
+        assert FULL_BRIGHTNESS == led._hal.val
         t.tick()
         assert led.update()
         assert 0 == led._hal.val
@@ -179,11 +196,11 @@ def test_forever_runs_effect_multiple_times():
 
 
 def test_after_stop_is_called_update_returns_false_and_set_brightness_to_zero():
-    fx = MockEffect([255, 255, 255])
+    fx = MockEffect([FULL_BRIGHTNESS, FULL_BRIGHTNESS, FULL_BRIGHTNESS])
     led = JLed(1).user_func(fx)
 
     assert led.update()
-    assert 255 == led._hal.val
+    assert FULL_BRIGHTNESS == led._hal.val
 
     led.stop()
     assert not led.update()
@@ -191,7 +208,7 @@ def test_after_stop_is_called_update_returns_false_and_set_brightness_to_zero():
 
 
 def test_is_running_returns_true_only_when_effect_is_running():
-    fx = MockEffect([255])
+    fx = MockEffect([FULL_BRIGHTNESS])
     led = JLed(1).user_func(fx)
 
     assert led.is_running
@@ -226,10 +243,13 @@ def test_jled_deinit_de_initializes_hal():
     assert led._hal.pin is None
 
 
-def test_on_sets_constant_brightness_eval_to_255():
+def test_on_sets_constant_brightness_eval_to_FULL_BRIGHTNESS():
     led = JLed(1).on(10)
     assert isinstance(led._brightness_eval, _ConstantBrightnessEval)
-    assert led._brightness_eval.__dict__ == _ConstantBrightnessEval(255, 10).__dict__
+    assert (
+        led._brightness_eval.__dict__
+        == _ConstantBrightnessEval(FULL_BRIGHTNESS, 10).__dict__
+    )
 
 
 def test_off_sets_constant_brightness_eval_to_0():
@@ -260,7 +280,7 @@ def test_breathe_with_custom_params_sets_breathe_brightness_eval():
     led = JLed(1).breathe(100, 200, 300)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
     assert (
-        _BreatheBrightnessEval(100, 200, 300, 0, 255).__dict__
+        _BreatheBrightnessEval(100, 200, 300, 0, FULL_BRIGHTNESS).__dict__
         == led._brightness_eval.__dict__
     )
 
@@ -269,7 +289,7 @@ def test_breathe_sets_breathe_brightness_eval():
     led = JLed(1).breathe(100)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
     assert (
-        _BreatheBrightnessEval(50, 0, 50, 0, 255).__dict__
+        _BreatheBrightnessEval(50, 0, 50, 0, FULL_BRIGHTNESS).__dict__
         == led._brightness_eval.__dict__
     )
 
@@ -278,7 +298,7 @@ def test_fadeon_sets_breathe_brightness_eval():
     led = JLed(1).fade_on(100)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
     assert (
-        _BreatheBrightnessEval(100, 0, 0, 0, 255).__dict__
+        _BreatheBrightnessEval(100, 0, 0, 0, FULL_BRIGHTNESS).__dict__
         == led._brightness_eval.__dict__
     )
 
@@ -287,7 +307,7 @@ def test_fadeoff_sets_breathe_brightness_eval():
     led = JLed(1).fade_off(100)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
     assert (
-        _BreatheBrightnessEval(0, 0, 100, 255, 0).__dict__
+        _BreatheBrightnessEval(0, 0, 100, 0, FULL_BRIGHTNESS).__dict__
         == led._brightness_eval.__dict__
     )
 
@@ -305,6 +325,6 @@ def test_fade_from_high_to_low_sets_breathe_brightness_eval_and_brightness():
     led = JLed(1).fade(start=200, end=100, period=300)
     assert isinstance(led._brightness_eval, _BreatheBrightnessEval)
     assert (
-        _BreatheBrightnessEval(0, 0, 300, 200, 100).__dict__
+        _BreatheBrightnessEval(0, 0, 300, 100, 200).__dict__
         == led._brightness_eval.__dict__
     )

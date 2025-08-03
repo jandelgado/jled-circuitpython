@@ -1,4 +1,4 @@
-.PHONY: help test coverage pre-commit monitor mpremote circup-list circup-update docs deploy lint
+.PHONY: help test coverage pre-commit monitor mpremote circup-list circup-update docs deploy lint clean
 
 help: ## Show this help message
 	@echo "Available targets:"
@@ -37,3 +37,6 @@ deploy: ## copy local files to the device
 
 lint: ## run ruff linter
 	uv tool run ruff check .
+
+clean:
+	rm -rf docs/_build build/

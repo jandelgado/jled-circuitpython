@@ -5,19 +5,19 @@
 
 
 import pytest
-from jled.jled import fadeon_func
+from jled.jled import FULL_BRIGHTNESS, fadeon_func
 
 
 @pytest.mark.parametrize(
     "t,expected",
     [
         (0, 0),
-        (500, 13),
-        (1000, 68),
-        (1500, 179),
-        (1999, 255),
-        (2000, 255),
-        (10000, 255),
+        (500, 3474),
+        (1000, 17545),
+        (1500, 46081),
+        (1999, FULL_BRIGHTNESS),
+        (2000, FULL_BRIGHTNESS),
+        (10000, FULL_BRIGHTNESS),
     ],
 )
 def test_fadeon_func_calculates_expected_curve_for_period_2000(t, expected):
