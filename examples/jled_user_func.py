@@ -6,6 +6,7 @@ JLed User defined effect example
 
 import board
 from jled import JLed
+from jled.jled import FULL_BRIGHTNESS
 
 
 class UserEffect:
@@ -13,9 +14,9 @@ class UserEffect:
         self._period = period
 
     def eval(self, t):
-        """this function returns changes between 0 and 255 and
+        """this function changes between 0 and FULL_BRIGHTNESS and
         vice versa every period/2 ms"""
-        return 255 * ((t // (self._period >> 1)) & 1)
+        return FULL_BRIGHTNESS * ((t // (self._period >> 1)) & 1)
 
     def period(self):
         return self._period

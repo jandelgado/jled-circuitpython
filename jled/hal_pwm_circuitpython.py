@@ -30,9 +30,9 @@ class CircuitPythonPWMHAL:
             CircuitPythonPWMHAL._leds[str(pin)] = led
 
     def analog_write(self, duty):
-        """write duty (0..255) to PWM port controlled by this HAL"""
+        """write duty (0..65535) to PWM port controlled by this HAL"""
         # scale JLed 8bit accuracy to 16bit, preserving min/max
-        self._led.duty_cycle = 0 if duty == 0 else (duty << 8) | 0xFF
+        self._led.duty_cycle = duty
 
     @property
     def _led(self):

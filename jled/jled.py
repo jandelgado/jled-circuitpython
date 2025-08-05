@@ -13,46 +13,101 @@ A pure python port of JLed (https://github.com/jandelgado/jled)
 
 """
 
-import random
-
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/jandelgado/jled-circuitpython.git"
 
-FULL_BRIGHTNESS = 255
+FULL_BRIGHTNESS = 65535  #: maximum brightness value
+
 ZERO_BRIGHTNESS = 0
 
 
-def scale8(a, factor):
-    """scale a byte by a byte"""
-    return (a * (1 + factor)) >> 8
+def scale16(val, factor):
+    """
+    Scale a 16-bit int value by a 16-bit int factor.
+
+    Properties:
+    - scale16(0, f) == 0 for all f
+    - scale16(x, 65535) == x for all x
+
+     :param val: value to scale (0-65535)
+     :param factor: scaling factor (0-65535)
+
+     :return: the scaled value
+    """
+    return (val * (1 + factor)) >> 16
 
 
-def lerp8by8(val, a, b):
-    """interpolate val to the interval defined by [a,b]. Returns a if val==0
-    and b if val==255 or a value in [a,b]"""
-    if a == 0 and b == 255:
-        return val
-    return a + scale8(val, b - a)
+def lerp16by16(val, a, b):
+    """
+    Interpolate a 16-bit value to the interval [a, b].
+
+    Properties:
+    - lerp16by16(0, a, b) = a
+    - lerp16by16(65535, a, b) = b
+
+    :param val:  value to interpolate
+    :param a: lower bound of interval
+    :param b: upper bound interval
+
+    :return: interpolated value between a and b
+    """
+    return a + scale16(val, b - a)
 
 
 def fadeon_func(t, period):
-    """The fade-on func is an approximation of
+    """
+    The fade-on func is an approximation of
+
     y(x) = exp(sin((t-period/2.) * PI / period)) - 0.36787944) * 108.), using
     pre-computed values and integers only.
 
     see https://www.wolframalpha.com/input/?i=plot+(exp(sin((x-100%2F2.)*PI%2F100))-0.36787944)*108.0++x%3D0+to+100
+
+    :param t: current time step (0 <= t < period)
+    :period: total period for the fade
+
+    :return: calculated brightness value (0-65535)
     """
+    # Brightness samples for x=0..255 in steps of 16
+    FADE_ON_TABLE = [
+        0,
+        198,
+        807,
+        1874,
+        3474,
+        5714,
+        8719,
+        12625,
+        17545,
+        23524,
+        30485,
+        38166,
+        46081,
+        53536,
+        59707,
+        63801,
+        65535,
+    ]
 
-    fadeon_table = [0, 3, 13, 33, 68, 118, 179, 232, 255]
-
+    # If we're at or past the end of the period, return full brightness
     if t + 1 >= period:
         return FULL_BRIGHTNESS
-    t = ((t << 8) // period) & 0xFF
-    i = t >> 5
-    y0 = fadeon_table[i]
-    y1 = fadeon_table[i + 1]
-    x0 = i << 5
-    return (((t - x0) * (y1 - y0)) >> 5) + y0
+
+    # Scale t according to period to 0..255, then divide by 16 to get table index
+    # i will be in range 0..15
+    i = (t << 4) // period
+
+    # Get the two brightness values to interpolate between
+    y0, y1 = FADE_ON_TABLE[i], FADE_ON_TABLE[i + 1]
+
+    # Calculate x position and step size for interpolation
+    dx = period >> 4
+    if dx == 0:
+        return y0
+    x0 = (i * period) >> 4
+
+    # Linear interpolation
+    return y0 + ((t - x0) * (y1 - y0)) // dx
 
 
 class _ConstantBrightnessEval:
@@ -105,7 +160,7 @@ class _BreatheBrightnessEval:
             val = FULL_BRIGHTNESS
         else:
             val = fadeon_func(self.period() - t, self._duration_fade_off)
-        return lerp8by8(val, self._start, self._end)
+        return lerp16by16(val, self._start, self._end)
 
 
 class _CandleBrightnessEval:
@@ -115,23 +170,18 @@ class _CandleBrightnessEval:
         self._speed = speed
         self._jitter = jitter
         self._period = period
-        self._last = 5
-        self._last_t = 0
 
     def period(self):
         return self._period
 
     def eval(self, t):
-        if t >> self._speed == self._last_t:
-            return self._last
-        self._last_t = t >> self._speed
-        rnd = random.randint(0, 255)
-        self._last = (
+        time_step = t >> self._speed
+        rnd = (time_step ^ (time_step >> 8) ^ (time_step << 3)) & 0xFF
+        return (
             FULL_BRIGHTNESS
             if rnd >= self._jitter
-            else (50 + self._CANDLE_TABLE[rnd & 0xF])
+            else (50 + self._CANDLE_TABLE[rnd & 0xF]) * 257
         )
-        return self._last
 
 
 class JLed:
@@ -190,7 +240,7 @@ class JLed:
     def low_active(self, val=True):
         """Use the ``low_active`` method when the connected LED is low active.
         All output will be inverted by JLed (i.e. instead of x, the value of
-        255-x will be set)."""
+        FULL_BRIGHTNESS-x will be set)."""
         self._low_active = val
         return self
 
@@ -199,7 +249,7 @@ class JLed:
         remember to also call :func:`update` like in
         ``JLed(board.LED).on().update()``. The ``period`` is optional and defaults
         to 1ms. ``on`` basically calls :func:`set` with brightness
-        set to 255.
+        set to FULL_BRIGHTNESS.
 
         :param period: period of the effect. Period will be relevant when
                        multiple JLed objects are controlled by a JLedSequence
@@ -222,7 +272,7 @@ class JLed:
     def set(self, brightness, period=1):
         """Use the ``set`` method to set the brightness to the given value.
 
-        :param brightness: brightness (0..255) to set
+        :param brightness: brightness (0..FULL_BRIGHTNESS) to set
         :param period: period of the effect. Period will be relevant when
                        multiple JLed objects are controlled by a JLedSequence
 
@@ -262,7 +312,7 @@ class JLed:
         :return: this JLed instance
         """
         return self._set_brightness_eval(
-            _BreatheBrightnessEval(0, 0, period, start, end)
+            _BreatheBrightnessEval(0, 0, period, end, start)
         )
 
     def fade(self, start, end, period):
@@ -339,7 +389,7 @@ class JLed:
 
         ``eval(t)`` - the brightness evaluation function that calculates a
         brightness for the given time ``t``. The brightness must be returned as
-        an unsigned byte , where 0 means LED off and 255 means full brightness.
+        an unsigned byte , where 0 means LED off and 65535 means full brightness.
         ``period()`` - returns the period of the effect.
 
         The unit of time is milliseconds.
@@ -422,16 +472,16 @@ class JLed:
 
     def max_brightness(self, level):
         """The ``max_brightness`` method is used to set the maximum brightness
-        level of the LED. A level of 255 (the default) is full brightness, while 0
+        level of the LED. A level of 65535 (the default) is full brightness, while 0
         effectively turns the LED off. In the same way, the ``min_brightness``
         method sets the minimum brightness level. The default minimum level is 0. If
         minimum or maximum brightness levels are set, the output value is scaled to be
         within the interval defined by ``[minimum brightness, maximum brightness]``: a
-        value of 0 will be mapped to the minimum brightness level, a value of 255 will
-        be mapped to the maximum brightness level.
+        value of 0 will be mapped to the minimum brightness level, a value of
+        65535 will be mapped to the maximum brightness level.
 
         :return: this JLed instance"""
-        self._max_brightness = level & 0xFF
+        self._max_brightness = level & 0xFFFF
         return self
 
     def min_brightness(self, level):
@@ -439,7 +489,7 @@ class JLed:
 
         :return: this JLed instance
         """
-        self._min_brightness = level & 0xFF
+        self._min_brightness = level & 0xFFFF
         return self
 
     def _set_brightness_eval(self, evaluator):
@@ -500,5 +550,5 @@ class JLed:
         return True
 
     def _write(self, val):
-        val = lerp8by8(val, self._min_brightness, self._max_brightness)
+        val = lerp16by16(val, self._min_brightness, self._max_brightness)
         self._hal.analog_write(FULL_BRIGHTNESS - val if self._low_active else val)

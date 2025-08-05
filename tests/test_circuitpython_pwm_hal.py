@@ -51,7 +51,7 @@ def test_circuitpython_hal_writes_scaled_value():
     hal.analog_write(0)
     assert 0 == hal._led._val
 
-    hal.analog_write(255)
+    hal.analog_write(0xFFFF)
     assert 0xFFFF == hal._led._val
 
 
