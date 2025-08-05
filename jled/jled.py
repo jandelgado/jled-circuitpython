@@ -172,24 +172,14 @@ class _CandleBrightnessEval:
         self._speed = speed
         self._jitter = jitter
         self._period = period
-        self._last = 5
-        self._last_t = 0
 
     def period(self):
         return self._period
 
     def eval(self, t):
-        if t >> self._speed == self._last_t:
-            return self._last
-        self._last_t = t >> self._speed
-        rnd = random.randint(0, 255)
-        self._last = (
-            FULL_BRIGHTNESS
-            if rnd >= self._jitter
-            else (50 + self._CANDLE_TABLE[rnd & 0xF]) * 257
-        )
-        return self._last
-
+        time_step = t >> self._speed
+        rnd = (time_step ^ (time_step >> 8) ^ (time_step << 3)) & 0xFF
+        return FULL_BRIGHTNESS if rnd >= self._jitter else (50 + self._CANDLE_TABLE[rnd & 0xF]) * 257
 
 class JLed:
     """JLed class"""

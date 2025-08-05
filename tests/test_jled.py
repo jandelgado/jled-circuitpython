@@ -44,11 +44,11 @@ def test_breathe_brightness_evalulates_curve():
 
 
 def test_candle_brightness_evalulater():
-    fx = _CandleBrightnessEval(6, 15, 10000)
+    fx = _CandleBrightnessEval(6, 15, 1000)
 
-    assert 10000 == fx.period()
-    assert 5 == fx.eval(0)
-    # assert 255 == fx.eval(100)    # TODO need injected rand() for that
+    assert 1000 == fx.period()
+    assert 14135 == fx.eval(0)
+    assert 28270 == fx.eval(100)
 
 
 def test_jled_init_passes_pin_to_hal():
