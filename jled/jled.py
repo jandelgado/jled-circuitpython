@@ -13,12 +13,10 @@ A pure python port of JLed (https://github.com/jandelgado/jled)
 
 """
 
-import random
-
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/jandelgado/jled-circuitpython.git"
 
-FULL_BRIGHTNESS = 65535 #: maximum brightness value
+FULL_BRIGHTNESS = 65535  #: maximum brightness value
 
 ZERO_BRIGHTNESS = 0
 
@@ -179,7 +177,12 @@ class _CandleBrightnessEval:
     def eval(self, t):
         time_step = t >> self._speed
         rnd = (time_step ^ (time_step >> 8) ^ (time_step << 3)) & 0xFF
-        return FULL_BRIGHTNESS if rnd >= self._jitter else (50 + self._CANDLE_TABLE[rnd & 0xF]) * 257
+        return (
+            FULL_BRIGHTNESS
+            if rnd >= self._jitter
+            else (50 + self._CANDLE_TABLE[rnd & 0xF]) * 257
+        )
+
 
 class JLed:
     """JLed class"""
